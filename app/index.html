@@ -13,13 +13,13 @@
 <body ng-app="mtgCardApp" ng-controller="mtgController">
   <div>
       <input type="text" ng-model="cardName" placeholder="Card name" />
-      <button ng-click="click()">Search</button>
+      <button ng-click="cardList.search()">Search</button>
   </div>
 
   <div>
     Results:
     <ul>
-      <li ng-repeat="card in cardList | filter:cardName">
+      <li ng-repeat="card in cardList">
         {{card.name}}
         {{card.artist}}
       </li>
