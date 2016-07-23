@@ -57,15 +57,20 @@
           </div>
         </div>
       </div>
-      <div class="results">
-        <ul>
-          <li ng-repeat="card in cardList">
-            {{card.name}}
-            {{card.artist}}
-          </li>
-        </ul>
+      <br />
+      <div class="results {{well}} {{hidden}}">
+        <img ng-src="{{cardList[cardList.length - 1].imageUrl}}" />
+        <div class="resultText">
+          <p><strong>Name:</strong> {{cardList[cardList.length - 1].name}} </p>
+          <p><strong>Artist:</strong> {{cardList[cardList.length - 1].artist}} </p>
+          <p><strong>Rarity:</strong> {{cardList[cardList.length - 1].rarity}}</p>
+          <p><strong>Power:</strong> {{cardList[cardList.length - 1].power}}</p>
+          <p><strong>Toughness:</strong> {{cardList[cardList.length - 1].toughness}}</p>
+          <p><strong>Flavor:</strong><em>{{cardList[cardList.length - 1].flavor}}</em></p>
+        </div>
       </div>
     </div>
+</div>
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->

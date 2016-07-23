@@ -6,7 +6,7 @@ angular.module('mtgCardApp.services', []).
         mtgAPI.getCards = function(name) {
             return $http({
                 method: 'GET',
-                url: 'https://api.magicthegathering.io/v1/cards?name=' + name
+                url: 'https://api.magicthegathering.io/v1/cards?name="' + name + '"'
             }).then(function successCallback(response) {
                 console.log(response.data.cards);
                 return response;

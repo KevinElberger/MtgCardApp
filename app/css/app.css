@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
 
 body {
@@ -28,4 +29,22 @@ h1 {
 
 .lead {
     color: #ffffff;
+}
+
+.results {
+    text-align: center;
+}
+
+.resultText {
+    text-align: left;
+}
+
+.well {
+    width: 55%;
+    margin: 0 auto;
+    opacity: .8;
+}
+
+.hidden {
+    display: none;
 }
