@@ -5,10 +5,11 @@
   <title>MTG Card App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="../bower_components/html5-boilerplate/dist/css/main.css">
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/app.css">
   <script src="../bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body ng-app="mtgCardApp" ng-controller="mtgController">
@@ -45,9 +46,14 @@
 <div class="hero">
 
     <div class="container">
+      <div class="progress {{hideBar}}">
+        <div class="progress-bar progress-bar-striped active {{hideBar}}" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="{{bar}}">
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h1><strong>MTG Card Search</strong></h1>
+          <h1 class="title"><strong>MTG Card Search</strong></h1>
           <br />
           <div class="input-group">
             <input type="text" ng-model="cardName" placeholder="Card name" class="form-control" />
@@ -59,14 +65,14 @@
       </div>
       <br />
       <div class="results {{well}} {{hidden}}">
-        <img ng-src="{{cardList[cardList.length - 1].imageUrl}}" />
-        <div class="resultText">
+        <img ng-src="{{cardList[cardList.length - 1].imageUrl}}" /><hr />
+        <div class="resultText well">
           <p><strong>Name:</strong> {{cardList[cardList.length - 1].name}} </p>
           <p><strong>Artist:</strong> {{cardList[cardList.length - 1].artist}} </p>
           <p><strong>Rarity:</strong> {{cardList[cardList.length - 1].rarity}}</p>
-          <p><strong>Power:</strong> {{cardList[cardList.length - 1].power}}</p>
-          <p><strong>Toughness:</strong> {{cardList[cardList.length - 1].toughness}}</p>
-          <p><strong>Flavor:</strong><em>{{cardList[cardList.length - 1].flavor}}</em></p>
+          <p><strong>P/T: </strong> {{cardList[cardList.length - 1].power}} / {{cardList[cardList.length - 1].toughness}}</p>
+          <p><strong>Card Text:</strong> {{cardList[cardList.length - 1].text}}</p>
+          <p><strong>Flavor:</strong><em> {{cardList[cardList.length - 1].flavor}}</em></p>
         </div>
       </div>
     </div>
