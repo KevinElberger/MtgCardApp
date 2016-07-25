@@ -20,12 +20,12 @@
 
                         <fieldset class="form-group">
                             <label for="cardQuantity">Quantity</label>
-                            <input type="number" class="form-control" id="cardQuantity" min="1" placeholder="1">
+                            <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1">
                         </fieldset>
 
                         <fieldset>
                             <label for="deckFormat">Format</label>
-                            <select id="deckFormat" class="form-control">
+                            <select id="deckFormat" class="form-control" ng-model="deckFormat">
                                 <option selected>Standard</option>
                                 <option value="Legacy">Legacy</option>
                                 <option value="Mtgo">MTGO</option>
@@ -43,18 +43,18 @@
 
                         <div class="radio">
                             <label class="radio-inline">
-                                <input type="radio" name="board" id="mainboard" value="mainboard" checked>
+                                <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="board" ng-value="true" checked>
                                 Mainboard
                             </label>
                         </div>
                         <div class="radio">
                             <label class="radio-inline">
-                                <input type="radio" name="board" id="sideboard" value="Sideboard">
+                                <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="board" ng-value="false">
                                 Sideboard
                             </label>
                         </div>
                         <br/>
-                        <button id="addCard" class="btn btn-success">Add Card</button>
+                        <button ng-click="deck.addCard()" id="addCard" class="btn btn-success">Add Card</button>
                         <button id="saveDeck" class="btn btn-primary">Save Deck</button>
 
                         <div class="{{hidden}}">
@@ -66,10 +66,10 @@
                 <div class="col-lg-8 main">
                     <fieldset class="form-group">
                         <label for="mainboard">Mainboard</label>
-                        <textarea disabled class="form-control" id="mainboardNotes" rows="6"></textarea>
+                        <textarea disabled class="form-control" id="mainboardNotes" rows="6">{{mainBoard}}</textarea>
                         <br/>
                         <label for="sideboard">Sideboard</label>
-                        <textarea disabled class="form-control" id="sideboardNotes" rows="6"></textarea>
+                        <textarea disabled class="form-control" id="sideboardNotes" rows="6">{{sideBoard}}</textarea>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="notes">Notes</label>

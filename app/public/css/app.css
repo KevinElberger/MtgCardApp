@@ -58,7 +58,7 @@ body {
 }
 
 .deckbuilder {
-    opacity: 1;
+    opacity: .9;
 }
 
 .dropdown-toggle {
