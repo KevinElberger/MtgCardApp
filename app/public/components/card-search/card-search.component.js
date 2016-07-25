@@ -22,4 +22,4 @@ angular.module('cardSearch').
                 }, 300);
             }
         }
-});
+    });

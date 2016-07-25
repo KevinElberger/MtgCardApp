@@ -1,1 +1,3 @@
-angular.module('cardSearch', []);
+angular.module('cardSearch', [
+    'ngRoute'
+]);

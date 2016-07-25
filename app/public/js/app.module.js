@@ -2,7 +2,7 @@
 
 angular.module('mtgCardApp', [
   'ngRoute',
-  // 'mtgCardApp.controllers',
   'mtgCardApp.services',
-  'cardSearch'
+  'cardSearch',
+  'deckBuilder'
 ]);

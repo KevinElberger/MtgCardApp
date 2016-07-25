@@ -27,7 +27,6 @@ var env = process.env.NODE_ENV || 'development';
  * Routes
  */
 
-// serve index and view partials
 app.get('/', routes.index);
 
 /**
