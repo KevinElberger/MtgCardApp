@@ -43,12 +43,32 @@ body {
     opacity: 1;
 }
 
+.cardImage {
+    padding-left: 3em;
+}
+
+.cName {
+    width: 90%;
+}
+
 .well {
     width: 55%;
     margin: 0 auto;
     opacity: .8;
 }
 
+.deckbuilder {
+    opacity: 1;
+}
+
+.dropdown-toggle {
+    width: 100%;
+}
+
 .hidden {
     display: none;
+}
+
+.main {
+    padding-left: 3em;
 }
