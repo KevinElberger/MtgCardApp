@@ -36,9 +36,11 @@ body {
 }
 
 .resultText {
-    background-color: #e3e3e3;
+    /*background-color: #e3e3e3;*/
+    background-color: #1c1c1c;
+    color: white;
     text-align: left;
-    opacity: .7;
+    opacity: 1;
 }
 
 .well {

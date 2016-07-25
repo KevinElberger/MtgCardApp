@@ -1,5 +1,5 @@
 angular.module('mtgCardApp.controllers', []).
-controller('mtgController', function($scope, mtgAPIservice) {
+controller('CardSearchController', function($scope, mtgAPIservice) {
     $scope.cardList = [];
     $scope.card = "";
     $scope.hideBar = 'hidden'; // hides progress bar until search
