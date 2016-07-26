@@ -1,3 +1,4 @@
 angular.module('deckBuilder', [
-    'ngRoute'
+    'ngRoute',
+    'chart.js'
 ]);

@@ -8,6 +8,10 @@ body {
     padding-top: 50px;
 }
 
+#buttonArea {
+    padding-left: 0;
+}
+
 .title {
     font-size: 4em;
 }
@@ -71,4 +75,8 @@ body {
 
 .main {
     padding-left: 3em;
+}
+
+.panel-heading {
+    text-align: center;
 }
