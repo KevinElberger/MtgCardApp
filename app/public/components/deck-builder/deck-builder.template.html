@@ -13,7 +13,7 @@
                             <div class="input-group">
                                 <input style="width: 160px;" type="text" class="form-control cName" ng-model="cardName" placeholder="Name" />
                                 <span class="input-group-btn">
-                                    <button ng-click="cardList.search()" class="btn btn-default">Search</button>
+                                    <button ng-click="search()" class="btn btn-default">Search</button>
                                 </span>
                             </div>
                         </fieldset>
@@ -55,7 +55,7 @@
                         </div>
                         <br/>
                         <button ng-click="deck.addCard()" id="addCard" class="btn btn-success">Add Card</button>
-                        <button id="saveDeck" class="btn btn-primary">Save Deck</button>
+                        <button ng-click="deck.saveDeck()" id="saveDeck" class="btn btn-primary">Save Deck</button>
 
                         <div class="{{hidden}}">
                             <br/>
@@ -73,7 +73,8 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="notes">Notes</label>
-                        <textarea class="form-control" id="notes" rows="8"></textarea>
+                        <textarea ng-model="notes" class="form-control" id="notes" rows="12"></textarea>
+                        <br/>
                     </fieldset>
                 </div>
             </form>
