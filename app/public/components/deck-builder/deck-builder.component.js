@@ -10,6 +10,8 @@ angular.module('deckBuilder').
             $scope.hidden = 'hidden'; // Hide image until search is made
             $scope.cardStats = [];
             $scope.cardCount = 0;
+            $scope.average = 0;
+            $scope.sum = 0;
             $scope.cmc = [0,0,0,0,0,0,0,0];
             var that = $scope;
 
@@ -40,6 +42,7 @@ angular.module('deckBuilder').
 
                     // Keep track of cmc and push in appropriate array slot
                     if(that.cardStats[that.cardStats.length-1][1].card.cmc) {
+                        $scope.sum += (that.cardStats[that.cardStats.length-1][1].card.cmc * $scope.quantity);
                         for (var j = 0; j < 8; j++) {
                             if (j == that.cardStats[that.cardStats.length-1][1].card.cmc) {
                                 $scope.cmc[j]+= that.cardStats[that.cardStats.length-1][0].quantity;
@@ -64,6 +67,7 @@ angular.module('deckBuilder').
 
             $scope.deck.stats = function() {
                 // Data for bar chart
+                $scope.average = $scope.sum / $scope.cardCount;
                 $scope.labels = ['0','1','2','3','4','5','6','7+'];
                 $scope.series = ['Number of cards'];
                 $scope.data = [
