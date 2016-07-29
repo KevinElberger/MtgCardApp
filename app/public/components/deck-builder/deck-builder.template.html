@@ -74,7 +74,7 @@
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="notes">Notes</label>
-                            <textarea ng-model="notes" class="form-control" id="notes" rows="12"></textarea>
+                            <textarea ng-model="notes" class="form-control" id="notes" rows="8"></textarea>
                             <br/>
                         </fieldset>
                     </div>
@@ -103,6 +103,9 @@
                         <h4><strong>Number of cards in deck:</strong> {{cardCount}}</h4>
                         <h4><strong>Average mana cost:</strong> {{average}}</h4>
                     </div>
+                    <button class="btn btn-primary">Random Hand</button>
+                    <hr/>
+                    <div id="randomHand"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

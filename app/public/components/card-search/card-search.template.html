@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="progress {{hideBar}}">
-        <div class="progress-bar progress-bar-striped active {{hideBar}}" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="{{bar}}">
+    <div class="progress {{$ctrl.hideBar}}">
+        <div class="progress-bar progress-bar-striped active {{$ctrl.hideBar}}" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="{{bar}}">
         </div>
     </div>
 
@@ -11,21 +11,21 @@
             <div class="input-group">
                 <input type="text" ng-model="cardName" placeholder="Card name" class="form-control" />
                 <span class="input-group-btn">
-                  <button ng-click="cardList.search()" class="btn btn-default">Search</button>
+                  <button ng-click="$ctrl.search()" class="btn btn-default">Search</button>
                 </span>
             </div>
         </div>
     </div>
     <br />
-    <div class="results {{well}} {{hidden}}">
-        <img ng-src="{{cardList[cardList.length - 1].imageUrl}}" /><hr />
+    <div class="results {{$ctrl.well}} {{$ctrl.hidden}}">
+        <img ng-src="{{$ctrl.cardList[$ctrl.cardList.length - 1].imageUrl}}" /><hr />
         <div class="resultText well">
-            <p><strong>Name:</strong> {{cardList[cardList.length - 1].name}} </p>
-            <p><strong>Artist:</strong> {{cardList[cardList.length - 1].artist}} </p>
-            <p><strong>Rarity:</strong> {{cardList[cardList.length - 1].rarity}}</p>
-            <p><strong>P/T: </strong> {{cardList[cardList.length - 1].power}} / {{cardList[cardList.length - 1].toughness}}</p>
-            <p><strong>Card Text:</strong> {{cardList[cardList.length - 1].text}}</p>
-            <p><strong>Flavor:</strong><em> {{cardList[cardList.length - 1].flavor}}</em></p>
+            <p><strong>Name:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].name}} </p>
+            <p><strong>Artist:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].artist}} </p>
+            <p><strong>Rarity:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].rarity}}</p>
+            <p><strong>P/T: </strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].power}} / {{cardList[cardList.length - 1].toughness}}</p>
+            <p><strong>Card Text:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].text}}</p>
+            <p><strong>Flavor:</strong><em> {{$ctrl.cardList[$ctrl.cardList.length - 1].flavor}}</em></p>
         </div>
     </div>
 </div>
