@@ -1,4 +1,5 @@
 angular.module('deckBuilder', [
     'ngRoute',
-    'chart.js'
+    'chart.js',
+    'mtgCardApp.services'
 ]);

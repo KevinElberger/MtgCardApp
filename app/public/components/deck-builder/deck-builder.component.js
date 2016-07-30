@@ -25,24 +25,23 @@ angular.module('deckBuilder').
 
             // Adds cards to either mainboard or sideboard
             // and stores cards for statistics
-            this.deck.addCard = function() {
-                that.cardCount += $scope.quantity;
-                if($scope.board == true) {
-                    that.mainBoard += ($scope.quantity + "x " + $scope.cardName + "\r\n");
-                    console.log(that.mainBoard);
+            this.addCard = function(card, quantity, board, format) {
+                that.cardCount += quantity;
+                if(board) {
+                    that.mainBoard += (quantity + "x " + card + "\r\n");
                 }
-                if($scope.board == false) {
-                    that.sideBoard += ($scope.quantity + "x " + $scope.cardName + "\r\n");
+                if(!board) {
+                    that.sideBoard += (quantity + "x " + card + "\r\n");
                 }
-
-                that.card = $scope.cardName; // Obtain query param from input
-                mtgAPIservice.getCards(that.card).then(function(response) {
+                
+                // that.card = $scope.cardName; // Obtain query param from input
+                mtgAPIservice.getCards(card).then(function(response) {
                     // Obtain last card (most recent) from response and push into card stats array
-                    that.cardStats.push([{"quantity": $scope.quantity}, {"card": response.data.cards[response.data.cards.length - 1]}]);
+                    that.cardStats.push([{"quantity": quantity}, {"card": response.data.cards[response.data.cards.length - 1]}]);
 
                     // Keep track of cmc and push in appropriate array slot
                     if(that.cardStats[that.cardStats.length-1][1].card.cmc) {
-                        that.sum += (that.cardStats[that.cardStats.length-1][1].card.cmc * $scope.quantity);
+                        that.sum += (that.cardStats[that.cardStats.length-1][1].card.cmc * quantity);
                         for (var j = 0; j < 8; j++) {
                             if (j == that.cardStats[that.cardStats.length-1][1].card.cmc) {
                                 that.cmc[j]+= that.cardStats[that.cardStats.length-1][0].quantity;
@@ -52,21 +51,21 @@ angular.module('deckBuilder').
                             that.cmc[7]+= that.cardStats[that.cardStats.length-1][0].quantity;
                         }
                     }
-                    console.log(that.cardStats);
                 });
             };
 
             // Saves deck as local text file
-            this.deck.saveDeck = function() {
-                var format = "Deck Format: " + $scope.deckFormat + "\r\n";
-                var main = "Mainboard:\r\n" + that.mainBoard + "\r\n";
-                var side = "Sideboard:\r\n" + that.sideBoard + "\r\n";
-                var notes = "Notes about deck:\r\n " + $scope.notes;
-                var deck = new Blob([format, main, side, notes], {type: "text/plain;charset=utf-8"});
+            this.saveDeck = function(deckFormat, mainBoard, sideBoard, notes) {
+                var format = "Deck Format: " + deckFormat + "\r\n";
+                var main = "Mainboard:\r\n" + mainBoard + "\r\n";
+                var side = "Sideboard:\r\n" + sideBoard + "\r\n";
+                var deckNotes = "Notes about deck:\r\n " + notes;
+                var deck = new Blob([format, main, side, deckNotes], {type: "text/plain;charset=utf-8"});
                 saveAs(deck, "deck.txt");
+                this.textDeck = deck;
             };
 
-            this.deck.stats = function() {
+            this.stats = function() {
                 // Data for bar chart
                 that.average = that.sum / that.cardCount;
                 $scope.labels = ['0','1','2','3','4','5','6','7+'];

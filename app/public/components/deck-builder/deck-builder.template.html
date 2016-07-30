@@ -54,8 +54,8 @@
                             </label>
                         </div>
                         <div id="buttonArea">
-                            <button ng-click="$ctrl.deck.addCard()" id="addCard" class="btn btn-success">Add Card</button>
-                            <button ng-click="$ctrl.deck.saveDeck()" id="saveDeck" class="btn btn-primary">Save Deck</button><br/>
+                            <button ng-click="$ctrl.addCard(cardName, quantity, board)" id="addCard" class="btn btn-success">Add Card</button>
+                            <button ng-click="$ctrl.saveDeck(deckFormat, $ctrl.mainBoard, $ctrl.sideBoard, notes)" id="saveDeck" class="btn btn-primary">Save Deck</button><br/>
                         </div>
 
                         <div class="{{$ctrl.hidden}}">
@@ -78,7 +78,7 @@
                             <br/>
                         </fieldset>
                     </div>
-                    <button ng-click="$ctrl.deck.stats()" class="btn btn-info" data-toggle="modal" data-target="#cardModal">Stats</button>
+                    <button ng-click="$ctrl.stats()" class="btn btn-info" data-toggle="modal" data-target="#cardModal">Stats</button>
                 </div>
             </form>
         </div>

@@ -23,7 +23,8 @@ module.exports = function(config) {
       'public/components/deck-builder/deck-builder.module.js',
       'public/components/deck-builder/deck-builder.component.js',
       'public/components/deck-builder/deck-builder.template.html',
-      'public/components/card-search/card-search.component.spec.js'
+      'public/components/card-search/card-search.component.spec.js',
+      'public/components/deck-builder/deck-builder.component.spec.js'
     ],
 
     autoWatch: true,

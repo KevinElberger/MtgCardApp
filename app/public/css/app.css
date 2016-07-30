@@ -8,6 +8,10 @@ body {
     padding-top: 50px;
 }
 
+textarea {
+    resize: none;
+}
+
 #buttonArea {
     padding-left: 0;
 }
