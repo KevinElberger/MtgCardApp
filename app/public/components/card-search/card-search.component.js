@@ -9,7 +9,6 @@ angular.module('cardSearch').
             var that = this;
 
             this.search = function(name) {
-                this.cardName = $scope.cardName;
                 this.hideBar = '';
                 this.bar = "width: 80%;";
                 mtgAPIservice.getCards(name).then(function(response) {
