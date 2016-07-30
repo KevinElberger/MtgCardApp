@@ -1,3 +1,4 @@
 angular.module('cardSearch', [
-    'ngRoute'
+    'ngRoute',
+    'mtgCardApp.services'
 ]);

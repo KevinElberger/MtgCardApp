@@ -8,12 +8,11 @@ angular.module('cardSearch').
             this.hidden = 'hidden'; // hides results until search
             var that = this;
 
-
-            this.search = function() {
+            this.search = function(name) {
+                this.cardName = $scope.cardName;
                 this.hideBar = '';
                 this.bar = "width: 80%;";
-                this.card = $scope.cardName; // Obtain query param from input
-                mtgAPIservice.getCards(this.card).then(function(response) {
+                mtgAPIservice.getCards(name).then(function(response) {
                     // Obtain relevant data from response
                     that.cardList = response.data.cards;
                 });
@@ -22,6 +21,6 @@ angular.module('cardSearch').
                     that.well = 'well';
                     that.hidden = '';
                 }, 300);
-            }
+            };
         }
     });
