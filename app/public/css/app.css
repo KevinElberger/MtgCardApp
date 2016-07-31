@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;;
 }
 
 body {
@@ -8,12 +8,29 @@ body {
     padding-top: 50px;
 }
 
+article {
+    display: inline;
+}
+
 textarea {
     resize: none;
 }
 
+img {
+    zoom: 50%;
+    padding-bottom: 1em;
+}
+
+header {
+    padding-top: 5px;
+}
+
 #buttonArea {
     padding-left: 0;
+}
+
+.btn {
+    border-radius: 0;
 }
 
 .title {
@@ -21,11 +38,12 @@ textarea {
 }
 
 .hero {
-    background-image: url(../img/wallhaven-315467.jpg);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size:cover;
+    /*background-image: url(../img/wallhaven-315467.jpg);*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size:cover;*/
+    background: #ffffff;
     height: 100%;
     /*opacity: .5;*/
 }
@@ -77,10 +95,63 @@ textarea {
     display: none;
 }
 
+.input-group {
+    width: 100%;
+}
+
+.logo {
+    zoom: 8%;
+    -moz-transform: scale(.08);
+    position: relative;
+}
+
 .main {
     padding-left: 3em;
 }
 
 .panel-heading {
     text-align: center;
+}
+
+.planeswalker {
+    zoom: 12%;
+    -moz-transform: scale(.12);
+}
+
+.creatures, .artifacts, .enchantments,
+    .spells, .planeswalkers, .lands {
+    /*padding: 10px 0;*/
+    min-height: 10em;
+}
+
+.creatures, .enchantments, .planeswalkers {
+    background-color: #F7F7F7;
+    border-top: 1px solid #F1F1F1;
+    border-bottom: 1px solid #F1F1F1;
+}
+
+.notifications {
+    border-radius: 50%;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 40px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    width: 40px;
+    display: inline;
+}
+
+.green {
+    background: #4cbe83;
+}
+
+.notificationwrapper {
+    display: inline;
+}
+
+.cardImg {
+    position: relative;
+    left: 3.2%;
 }
