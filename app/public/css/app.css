@@ -53,6 +53,14 @@ header {
     margin: 0 auto;
 }
 
+.navbar-toggle .icon-lol {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #cccccc;
+    border-radius: 1px;
+}
+
 .lead {
     color: #ffffff;
 }
@@ -89,6 +97,18 @@ header {
 
 .dropdown-toggle {
     width: 100%;
+}
+
+.hamburger {
+    background: none;
+    position: absolute;
+    line-height: 45px;
+    padding: 0px 15px 0px 15px;
+    top: 0;
+    border: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .hidden {
