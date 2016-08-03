@@ -200,3 +200,12 @@ header {
     background-color: #3da971;
     border-color: #3da971;
 }
+
+.btn-success:active {
+    background-color: #3da971;
+    border-color: #3da971;
+}
+
+.searchImg {
+    zoom: 100%;
+}

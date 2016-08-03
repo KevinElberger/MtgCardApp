@@ -18,14 +18,14 @@
     </div>
     <br />
     <div class="results {{$ctrl.well}} {{$ctrl.hidden}}">
-        <img ng-src="{{$ctrl.cardList[$ctrl.cardList.length - 1].imageUrl}}" /><hr />
+        <img class="searchImg" ng-src="{{$ctrl.cardList[0].imageUrl}}" /><hr />
         <div class="resultText well">
-            <p><strong>Name:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].name}} </p>
-            <p><strong>Artist:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].artist}} </p>
-            <p><strong>Rarity:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].rarity}}</p>
-            <p><strong>P/T: </strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].power}} / {{cardList[cardList.length - 1].toughness}}</p>
-            <p><strong>Card Text:</strong> {{$ctrl.cardList[$ctrl.cardList.length - 1].text}}</p>
-            <p><strong>Flavor:</strong><em> {{$ctrl.cardList[$ctrl.cardList.length - 1].flavor}}</em></p>
+            <p><strong>Name:</strong> {{$ctrl.cardList[0].name}} </p>
+            <p><strong>Artist:</strong> {{$ctrl.cardList[0].artist}} </p>
+            <p><strong>Rarity:</strong> {{$ctrl.cardList[0].rarity}}</p>
+            <p><strong>P/T: </strong> {{$ctrl.cardList[0].power}} / {{cardList[0].toughness}}</p>
+            <p><strong>Card Text:</strong> {{$ctrl.cardList[0].text}}</p>
+            <p><strong>Flavor:</strong><em> {{$ctrl.cardList[0].flavor}}</em></p>
         </div>
     </div>
 </div>
