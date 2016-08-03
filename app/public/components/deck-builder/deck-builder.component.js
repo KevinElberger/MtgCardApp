@@ -21,74 +21,76 @@ angular.module('deckBuilder').
             this.cmc = [0,0,0,0,0,0,0,0];
             var that = this;
 
-            this.search = function(name) {
-                mtgAPIservice.getCards(name).then(function(response) {
-                    // Obtain relevant data from response
-                    that.cardList = response.data.cards;
-                });
-                this.hidden = '';
-            };
+            // this.search = function(name) {
+            //     mtgAPIservice.getCards(name).then(function(response) {
+            //         // Obtain relevant data from response
+            //         that.cardList = response.data.cards;
+            //     });
+            //     this.hidden = '';
+            // };
 
             // Adds cards to either mainboard or sideboard
             // and stores cards for statistics
             this.addCard = function(card, quantity, board, format) {
-                that.cardCount += quantity;
-                mtgAPIservice.getCards(card).then(function(response) {
-                    var data = response.data.cards[response.data.cards.length-1];
-                    // console.log(data);
-                    var cardType = response.data.cards[response.data.cards.length-1].types[0];
+                if (quantity > 0) {
+                    that.cardCount += quantity;
+                    mtgAPIservice.getCards(card).then(function (response) {
+                        var data = response.data.cards[response.data.cards.length - 1];
+                        // console.log(data);
+                        var cardType = response.data.cards[response.data.cards.length - 1].types[0];
 
-                    // Obtain last card (most recent) from response and push into card stats array
-                    that.cardStats.push([{"quantity": quantity}, {"card": response.data.cards[response.data.cards.length - 1]}]);
-                    // Keep track of cmc and push in appropriate array slot
-                    if(that.cardStats[that.cardStats.length-1][1].card.cmc) {
-                        that.sum += (that.cardStats[that.cardStats.length-1][1].card.cmc * quantity);
-                        for (var j = 0; j < 8; j++) {
-                            if (j == that.cardStats[that.cardStats.length-1][1].card.cmc) {
-                                that.cmc[j]+= that.cardStats[that.cardStats.length-1][0].quantity;
+                        // Obtain last card (most recent) from response and push into card stats array
+                        that.cardStats.push([{"quantity": quantity}, {"card": response.data.cards[response.data.cards.length - 1]}]);
+                        // Keep track of cmc and push in appropriate array slot
+                        if (that.cardStats[that.cardStats.length - 1][1].card.cmc) {
+                            that.sum += (that.cardStats[that.cardStats.length - 1][1].card.cmc * quantity);
+                            for (var j = 0; j < 8; j++) {
+                                if (j == that.cardStats[that.cardStats.length - 1][1].card.cmc) {
+                                    that.cmc[j] += that.cardStats[that.cardStats.length - 1][0].quantity;
+                                }
+                            }
+                            if (that.cardStats[that.cardStats.length - 1][1].card.cmc > 7) {
+                                that.cmc[7] += that.cardStats[that.cardStats.length - 1][0].quantity;
                             }
                         }
-                        if (that.cardStats[that.cardStats.length-1][1].card.cmc > 7) {
-                            that.cmc[7]+= that.cardStats[that.cardStats.length-1][0].quantity;
+                        if (!that.hasCard(card, quantity)) {
+                            // Record color types for polar area chart
+                            that.recordColor(data, quantity);
+                            switch (cardType) {
+                                case "Creature":
+                                    that.cardTypes[0]+= quantity;
+                                    that.creatures.push([data, quantity]);
+                                    break;
+                                case "Sorcery":
+                                    that.cardTypes[1]+= quantity;
+                                    that.spells.push([data, quantity]);
+                                    break;
+                                case "Instant":
+                                    that.cardTypes[2]+= quantity;
+                                    that.spells.push([data, quantity]);
+                                    break;
+                                case "Artifact":
+                                    that.cardTypes[3]+= quantity;
+                                    that.artifacts.push([data, quantity]);
+                                    break;
+                                case "Enchantment":
+                                    that.cardTypes[4]+= quantity;
+                                    that.enchantments.push([data, quantity]);
+                                    break;
+                                case "Planeswalker":
+                                    that.cardTypes[5]+= quantity;
+                                    that.planeswalkers.push([data, quantity]);
+                                    break;
+                                default:
+                                    that.cardTypes[6]+= quantity;
+                                    that.lands.push([data, quantity]);
+                                    break;
+                            }
                         }
-                    }
-                    if (!that.hasCard(card, quantity)) {
-                        // Record color types for polar area chart
-                        that.recordColor(data, quantity);
-                        switch (cardType) {
-                            case "Creature":
-                                that.cardTypes[0]++;
-                                that.creatures.push([data, quantity]);
-                                break;
-                            case "Sorcery":
-                                that.cardTypes[1]++;
-                                that.spells.push([data, quantity]);
-                                break;
-                            case "Instant":
-                                that.cardTypes[2]++;
-                                that.spells.push([data, quantity]);
-                                break;
-                            case "Artifact":
-                                that.cardTypes[3]++;
-                                that.artifacts.push([data, quantity]);
-                                break;
-                            case "Enchantment":
-                                that.cardTypes[4]++;
-                                that.enchantments.push([data, quantity]);
-                                break;
-                            case "Planeswalker":
-                                that.cardTypes[5]++;
-                                that.planeswalkers.push([data, quantity]);
-                                break;
-                            default:
-                                that.cardTypes[6]++;
-                                that.lands.push([data, quantity]);
-                                break;
-                        }
-                    }
-                    // Update statistics graphs
-                    that.displayStats();
-                });
+                        // Update statistics graphs
+                        that.displayStats();
+                    });
+                }
             };
 
             // Check if card is already listed so only quantity needs to be updated

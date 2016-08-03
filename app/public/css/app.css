@@ -12,8 +12,12 @@ textarea {
 }
 
 img {
-    zoom: 50%;
+    zoom: 30%;
     padding-bottom: 1em;
+}
+
+.cardImg:hover {
+    zoom: 80%;
 }
 
 header {

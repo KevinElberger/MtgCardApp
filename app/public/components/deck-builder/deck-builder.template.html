@@ -11,8 +11,7 @@
             <fieldset class="form-group">
                 <label>CARD NAME</label>
                 <div class="input-group">
-                    <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" />
-                    <!--<button ng-click="$ctrl.search(cardName)" class="btn btn-default">Search</button>-->
+                    <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" required="required" />
                     <span class="input-group-btn">
                         <button ng-click="$ctrl.addCard(cardName, quantity, board, format)" id="addCard" class="btn btn-success">Add Card</button>
                     </span>
@@ -21,7 +20,7 @@
 
             <fieldset class="form-group">
                 <label for="cardQuantity">QUANTITY</label>
-                <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1" max="100">
+                <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1" max="100" required="required">
             </fieldset>
 
             <fieldset>
