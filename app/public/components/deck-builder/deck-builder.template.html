@@ -1,125 +1,138 @@
-<div class="container">
+<div class="wrapper">
+    <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1 class="title"><strong>Build Your Deck</strong></h1>
         </div>
     </div>
 </div>
-<div class="col-md-2">
-    <form class="form deckbuilder">
-        <fieldset class="form-group">
-            <label>CARD NAME</label>
-            <div class="input-group">
-                <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" />
-                <!--<button ng-click="$ctrl.search(cardName)" class="btn btn-default">Search</button>-->
-                <span class="input-group-btn">
-                    <button ng-click="$ctrl.addCard(cardName, quantity, board, format)" id="addCard" class="btn btn-success">Add Card</button>
-                </span>
+    <div class="col-md-2">
+        <form class="form deckbuilder">
+            <fieldset class="form-group">
+                <label>CARD NAME</label>
+                <div class="input-group">
+                    <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" />
+                    <!--<button ng-click="$ctrl.search(cardName)" class="btn btn-default">Search</button>-->
+                    <span class="input-group-btn">
+                        <button ng-click="$ctrl.addCard(cardName, quantity, board, format)" id="addCard" class="btn btn-success">Add Card</button>
+                    </span>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="cardQuantity">QUANTITY</label>
+                <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1">
+            </fieldset>
+
+            <fieldset>
+                <label for="deckFormat">FORMAT</label>
+                <select id="deckFormat" class="form-control" ng-model="deckFormat">
+                    <option selected>Standard</option>
+                    <option value="Legacy">Legacy</option>
+                    <option value="Mtgo">MTGO</option>
+                    <option value="Vintage">Vintage</option>
+                    <option value="Commander/Edh">Commander / EDH</option>
+                    <option value="Archenemy">Archenemy</option>
+                    <option value="Planechase">Planechase</option>
+                    <option value="Vanguard">Vanguard</option>
+                    <option value="Modern">Modern</option>
+                    <option value="Pauper">Pauper</option>
+                    <option value="Casual">Casual</option>
+                    <option value="Limited">Limited</option>
+                </select>
+            </fieldset>
+
+            <div class="radio">
+                <label class="radio-inline">
+                    <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="board" ng-value="true" checked>
+                    Mainboard
+                </label>
             </div>
-        </fieldset>
+            <div class="radio">
+                <label class="radio-inline">
+                    <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="board" ng-value="false">
+                    Sideboard
+                </label>
+            </div>
 
-        <fieldset class="form-group">
-            <label for="cardQuantity">QUANTITY</label>
-            <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1">
-        </fieldset>
+            <div class="{{$ctrl.hidden}}">
+                <br/>
+                <img ng-src="{{$ctrl.cardList[$ctrl.cardList.length - 1].imageUrl}}" />
+            </div>
 
-        <fieldset>
-            <label for="deckFormat">FORMAT</label>
-            <select id="deckFormat" class="form-control" ng-model="deckFormat">
-                <option selected>Standard</option>
-                <option value="Legacy">Legacy</option>
-                <option value="Mtgo">MTGO</option>
-                <option value="Vintage">Vintage</option>
-                <option value="Commander/Edh">Commander / EDH</option>
-                <option value="Archenemy">Archenemy</option>
-                <option value="Planechase">Planechase</option>
-                <option value="Vanguard">Vanguard</option>
-                <option value="Modern">Modern</option>
-                <option value="Pauper">Pauper</option>
-                <option value="Casual">Casual</option>
-                <option value="Limited">Limited</option>
-            </select>
-        </fieldset>
-
-        <div class="radio">
-            <label class="radio-inline">
-                <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="board" ng-value="true" checked>
-                Mainboard
-            </label>
+            <fieldset class="form-group">
+                <br/>
+                <label for="notes">DECK NOTES</label>
+                <textarea ng-model="notes" class="form-control" id="notes" rows="8"></textarea>
+                <br/>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div class="creatures">
+            <header>
+                <h4><img class="logo" src="img/Creature_symbol.png"> Creatures</h4>
+            </header>
+            <article ng-repeat="card in $ctrl.creatures">
+                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
+                <div class="notifications green">{{card[1]}}</div>
+            </article>
         </div>
-        <div class="radio">
-            <label class="radio-inline">
-                <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="board" ng-value="false">
-                Sideboard
-            </label>
+        <div class="artifacts">
+            <header>
+                <h4><img class="logo" src="img/Artifact_symbol.png"> Artifacts</h4>
+            </header>
+            <article ng-repeat="card in $ctrl.artifacts">
+                <img class="cardImg" ng-src="{{car[0].imageUrl}}" />
+                <div class="notifications green">{{card[1]}}</div>
+            </article>
         </div>
-
-        <div class="{{$ctrl.hidden}}">
-            <br/>
-            <img ng-src="{{$ctrl.cardList[$ctrl.cardList.length - 1].imageUrl}}" />
+        <div class="enchantments">
+            <header>
+                <h4><img class="logo" src="img/Enchantment_symbol.png"> Enchantments</h4>
+            </header>
+            <article ng-repeat="card in $ctrl.enchantments">
+                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
+                <div class="notifications green">{{card[1]}}</div>
+            </article>
         </div>
-
-        <fieldset class="form-group">
-            <br/>
-            <label for="notes">DECK NOTES</label>
-            <textarea ng-model="notes" class="form-control" id="notes" rows="8"></textarea>
-            <br/>
-        </fieldset>
-    </form>
-</div>
-<div class="col-md-8">
-    <div class="creatures">
-        <header>
-            <h4><img class="logo" src="img/Creature_symbol.png"> Creatures</h4>
-        </header>
-        <article ng-repeat="card in $ctrl.creatures">
-            <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-            <div class="notifications green">{{card[1]}}</div>
-        </article>
+        <div class="spells">
+            <header>
+                <h4><img class="logo" src="img/Sorcery_symbol.jpg">  Spells</h4>
+            </header>
+            <article ng-repeat="card in $ctrl.spells">
+                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
+                <div class="notifications green">{{card[1]}}</div>
+            </article>
+        </div>
+        <div class="planeswalkers">
+            <header>
+                <h4><img class="planeswalker" src="img/Planeswalker_symbol.png"> Planeswalkers</h4>
+            </header>
+            <article ng-repeat="card in $ctrl.planeswalkers">
+                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
+                <div class="notifications green">{{card[1]}}</div>
+            </article>
+        </div>
+        <div class="lands">
+            <header>
+                <h4><img class="logo" src="img/Land_symbol.png"> Lands</h4>
+            </header>
+            <article ng-repeat="card in $ctrl.lands">
+                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
+                <div class="notifications green">{{card[1]}}</div>
+            </article>
+        </div>
     </div>
-    <div class="artifacts">
-        <header>
-            <h4><img class="logo" src="img/Artifact_symbol.png"> Artifacts</h4>
-        </header>
-        <article ng-repeat="card in $ctrl.artifacts">
-            <img class="cardImg" ng-src="{{car[0].imageUrl}}" />
-            <div class="notifications green">{{card[1]}}</div>
-        </article>
-    </div>
-    <div class="enchantments">
-        <header>
-            <h4><img class="logo" src="img/Enchantment_symbol.png"> Enchantments</h4>
-        </header>
-        <article ng-repeat="card in $ctrl.enchantments">
-            <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-            <div class="notifications green">{{card[1]}}</div>
-        </article>
-    </div>
-    <div class="spells">
-        <header>
-            <h4><img class="logo" src="img/Sorcery_symbol.jpg">  Spells</h4>
-        </header>
-        <article ng-repeat="card in $ctrl.spells">
-            <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-            <div class="notifications green">{{card[1]}}</div>
-        </article>
-    </div>
-    <div class="planeswalkers">
-        <header>
-            <h4><img class="planeswalker" src="img/Planeswalker_symbol.png"> Planeswalkers</h4>
-        </header>
-        <article ng-repeat="card in $ctrl.planeswalkers">
-            <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-            <div class="notifications green">{{card[1]}}</div>
-        </article>
-    </div>
-    <div class="lands">
-        <header>
-            <h4><img class="logo" src="img/Land_symbol.png"> Lands</h4>
-        </header>
-        <article ng-repeat="card in $ctrl.lands">
-            <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-            <div class="notifications green">{{card[1]}}</div>
-        </article>
+    <div class="col-md-2">
+        <div class="statisticsWrapper">
+            <h3><strong>Statistics</strong></h3><br/>
+            <div class="canvasWrapper">
+                <label>Mana Curve</label>
+                <canvas id="bar" width="250" height="250"></canvas>
+                <label>Card Types</label>
+                <canvas id="pie" width="250" height="250"></canvas>
+            </div>
+        </div>
     </div>
 </div>

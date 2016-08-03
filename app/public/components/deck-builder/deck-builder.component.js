@@ -13,6 +13,7 @@ angular.module('deckBuilder').
             this.card = "";
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = [];
+            this.cardTypes = [0,0,0,0,0,0,0];
             this.cardCount = 0;
             this.average = 0;
             this.sum = 0;
@@ -53,50 +54,37 @@ angular.module('deckBuilder').
                     if (!that.hasCard(card, quantity)) {
                         switch (cardType) {
                             case "Creature":
+                                that.cardTypes[0]++;
                                 that.creatures.push([data, quantity]);
                                 break;
                             case "Sorcery":
+                                that.cardTypes[1]++;
                                 that.spells.push([data, quantity]);
                                 break;
                             case "Instant":
+                                that.cardTypes[2]++;
                                 that.spells.push([data, quantity]);
                                 break;
                             case "Artifact":
+                                that.cardTypes[3]++;
                                 that.artifacts.push([data, quantity]);
                                 break;
                             case "Enchantment":
+                                that.cardTypes[4]++;
                                 that.enchantments.push([data, quantity]);
                                 break;
                             case "Planeswalker":
+                                that.cardTypes[5]++;
                                 that.planeswalkers.push([data, quantity]);
                                 break;
                             default:
+                                that.cardTypes[6]++;
                                 that.lands.push([data, quantity]);
                                 break;
                         }
                     }
+                    that.displayStats();
                 });
-            };
-
-            // Saves deck as local text file
-            this.saveDeck = function(deckFormat, mainBoard, sideBoard, notes) {
-                var format = "Deck Format: " + deckFormat + "\r\n";
-                var main = "Mainboard:\r\n" + mainBoard + "\r\n";
-                var side = "Sideboard:\r\n" + sideBoard + "\r\n";
-                var deckNotes = "Notes about deck:\r\n " + notes;
-                var deck = new Blob([format, main, side, deckNotes], {type: "text/plain;charset=utf-8"});
-                saveAs(deck, "deck.txt");
-                this.textDeck = deck;
-            };
-
-            this.stats = function() {
-                // Data for bar chart
-                that.average = that.sum / that.cardCount;
-                $scope.labels = ['0','1','2','3','4','5','6','7+'];
-                $scope.series = ['Number of cards'];
-                $scope.data = [
-                    that.cmc
-                ];
             };
 
             // Check if card is already listed so only quantity needs to be updated
@@ -139,6 +127,102 @@ angular.module('deckBuilder').
                     }
                 }
                 return false;
-            }
+            };
+
+            // Saves deck as local text file
+            this.saveDeck = function(deckFormat, mainBoard, sideBoard, notes) {
+                var format = "Deck Format: " + deckFormat + "\r\n";
+                var main = "Mainboard:\r\n" + mainBoard + "\r\n";
+                var side = "Sideboard:\r\n" + sideBoard + "\r\n";
+                var deckNotes = "Notes about deck:\r\n " + notes;
+                var deck = new Blob([format, main, side, deckNotes], {type: "text/plain;charset=utf-8"});
+                saveAs(deck, "deck.txt");
+                this.textDeck = deck;
+            };
+
+            this.displayStats = function() {
+                // Data for bar chart
+                $('.statistics').click(function() {
+                   $('html,body').animate({
+                       scrollTop: $('.statisticsWrapper').offset().top}, 'slow');
+                });
+                var clicked = 0;
+                if (clicked < 2) {
+                    clicked++;
+                    this.computeStats();
+                }
+            };
+
+            this.computeStats = function() {
+                that.average = that.sum / that.cardCount;
+                var ctx = document.getElementById('bar').getContext('2d');
+                var myBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['0','1','2','3','4','5','6','7+'],
+                        datasets: [
+                            {
+                                label: '# of Cards',
+                                data: that.cmc,
+                                backgroundColor: ['rgb(63, 191, 63)',
+                                    'rgba(63, 191, 63, 0.5)',
+                                    'rgba(63, 191, 63, 0.5)',
+                                    'rgba(63, 191, 63, 0.5)',
+                                    'rgba(63, 191, 63, 0.5)',
+                                    'rgba(63, 191, 63, 0.5)',
+                                    'rgba(63, 191, 63, 0.5)',
+                                    'rgba(63, 191, 63, 0.5)'
+                                ],
+                                borderColor: ['rgb(63, 191, 63)',
+                                    'rgb(63, 191, 63)',
+                                    'rgb(63, 191, 63)',
+                                    'rgb(63, 191, 63)',
+                                    'rgb(63, 191, 63)',
+                                    'rgb(63, 191, 63)',
+                                    'rgb(63, 191, 63)',
+                                    'rgb(63, 191, 63)'
+                                ]
+                            }
+                        ],
+                        options: {
+                            responsiveAnimationDuration: 1000,
+                            maintainAspectRatio: false
+                        }
+                    }
+                });
+
+                var pie = document.getElementById('pie').getContext('2d');
+                var myPieChart = new Chart(pie, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            "Creature",
+                            "Sorcery",
+                            "Instant",
+                            "Artifact",
+                            "Enchantment",
+                            "Planeswalker",
+                            "Land"
+                        ],
+                        datasets: [
+                            {
+                                data: [that.cardTypes[0], that.cardTypes[1], that.cardTypes[2], that.cardTypes[3],
+                                    that.cardTypes[4], that.cardTypes[5], that.cardTypes[6]],
+                                backgroundColor: [
+                                    "#9bd3ae",
+                                    "#faaa8f",
+                                    "#aaa0fa",
+                                    "#393830",
+                                    "#000000",
+                                ]
+                            }
+                        ],
+                        options: {
+                            responsiveAnimationDuration: 1000,
+                            maintainAspectRatio: false
+                        }
+                    }
+                });
+            };
         }
     });

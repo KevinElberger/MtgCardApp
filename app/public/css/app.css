@@ -38,14 +38,8 @@ header {
 }
 
 .hero {
-    /*background-image: url(../img/wallhaven-315467.jpg);*/
-    /*-webkit-background-size: cover;*/
-    /*-moz-background-size: cover;*/
-    /*-o-background-size: cover;*/
-    /*background-size:cover;*/
     background: #ffffff;
     height: 100%;
-    /*opacity: .5;*/
 }
 
 .input-group {
@@ -174,4 +168,26 @@ header {
 .cardImg {
     position: relative;
     left: 3.2%;
+}
+
+.form-control:focus {
+    border-color: #5cb85c;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.statsButton {
+    text-align: center;
+}
+
+.statisticsWrapper {
+    text-align: center;
+    background-color: #F2F2F2;
+    border: 1px solid #F2F2F2;
+}
+
+.canvasWrapper {
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
 }
