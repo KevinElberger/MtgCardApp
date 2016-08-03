@@ -32,10 +32,11 @@ angular.module('deckBuilder').
             // and stores cards for statistics
             this.addCard = function(card, quantity, board, format) {
                 that.cardCount += quantity;
-
                 mtgAPIservice.getCards(card).then(function(response) {
-                    var cardType = response.data.cards[response.data.cards.length-1].types[0];
                     var data = response.data.cards[response.data.cards.length-1];
+                    console.log(data);
+                    var cardType = response.data.cards[response.data.cards.length-1].types[0];
+
                     // Obtain last card (most recent) from response and push into card stats array
                     that.cardStats.push([{"quantity": quantity}, {"card": response.data.cards[response.data.cards.length - 1]}]);
                     // Keep track of cmc and push in appropriate array slot
@@ -50,7 +51,6 @@ angular.module('deckBuilder').
                             that.cmc[7]+= that.cardStats[that.cardStats.length-1][0].quantity;
                         }
                     }
-
                     if (!that.hasCard(card, quantity)) {
                         switch (cardType) {
                             case "Creature":
@@ -113,7 +113,6 @@ angular.module('deckBuilder').
                         return true;
                     }
                 }
-
                 for (var m = 0; m < that.lands.length; m++) {
                     if (that.lands[m][0].name.toUpperCase() === name.toUpperCase()) {
                         that.lands[m][1] += quantity;
@@ -142,10 +141,6 @@ angular.module('deckBuilder').
 
             this.displayStats = function() {
                 // Data for bar chart
-                $('.statistics').click(function() {
-                   $('html,body').animate({
-                       scrollTop: $('.statisticsWrapper').offset().top}, 'slow');
-                });
                 var clicked = 0;
                 if (clicked < 2) {
                     clicked++;
@@ -155,6 +150,9 @@ angular.module('deckBuilder').
 
             this.computeStats = function() {
                 that.average = that.sum / that.cardCount;
+                $('.canvasWrapper').empty();
+                $('.canvasWrapper').append('<label>Mana Curve</label><canvas id="bar" width="250" height="250"></canvas>' +
+                '<label>Type Breakdown</label><canvas id="pie" width="250" height="250"></canvas>');
                 var ctx = document.getElementById('bar').getContext('2d');
                 var myBarChart = new Chart(ctx, {
                     type: 'bar',
@@ -164,23 +162,21 @@ angular.module('deckBuilder').
                             {
                                 label: '# of Cards',
                                 data: that.cmc,
-                                backgroundColor: ['rgb(63, 191, 63)',
-                                    'rgba(63, 191, 63, 0.5)',
-                                    'rgba(63, 191, 63, 0.5)',
-                                    'rgba(63, 191, 63, 0.5)',
-                                    'rgba(63, 191, 63, 0.5)',
-                                    'rgba(63, 191, 63, 0.5)',
-                                    'rgba(63, 191, 63, 0.5)',
-                                    'rgba(63, 191, 63, 0.5)'
+                                backgroundColor: ['#FF8B66',
+                                    '#5B62BC',
+                                    '#FFD666',
+                                    '#DF5988',
+                                    '#4C8BB0',
+                                    '#4CBE84',
+                                    '#FFBA66'
                                 ],
-                                borderColor: ['rgb(63, 191, 63)',
-                                    'rgb(63, 191, 63)',
-                                    'rgb(63, 191, 63)',
-                                    'rgb(63, 191, 63)',
-                                    'rgb(63, 191, 63)',
-                                    'rgb(63, 191, 63)',
-                                    'rgb(63, 191, 63)',
-                                    'rgb(63, 191, 63)'
+                                borderColor: ['#FF8B66',
+                                    '#5B62BC',
+                                    '#FFD666',
+                                    '#DF5988',
+                                    '#4C8BB0',
+                                    '#4CBE84',
+                                    '#FFBA66'
                                 ]
                             }
                         ],
@@ -209,11 +205,13 @@ angular.module('deckBuilder').
                                 data: [that.cardTypes[0], that.cardTypes[1], that.cardTypes[2], that.cardTypes[3],
                                     that.cardTypes[4], that.cardTypes[5], that.cardTypes[6]],
                                 backgroundColor: [
-                                    "#9bd3ae",
-                                    "#faaa8f",
-                                    "#aaa0fa",
-                                    "#393830",
-                                    "#000000",
+                                    "#4CBE84",
+                                    "#FF8B66",
+                                    "#5B62BC",
+                                    "#FFD666",
+                                    "#DF5988",
+                                    "#4C8BB0",
+                                    "#FFBA66"
                                 ]
                             }
                         ],

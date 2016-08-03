@@ -21,7 +21,7 @@
 
             <fieldset class="form-group">
                 <label for="cardQuantity">QUANTITY</label>
-                <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1">
+                <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1" max="100">
             </fieldset>
 
             <fieldset>
@@ -83,7 +83,7 @@
                 <h4><img class="logo" src="img/Artifact_symbol.png"> Artifacts</h4>
             </header>
             <article ng-repeat="card in $ctrl.artifacts">
-                <img class="cardImg" ng-src="{{car[0].imageUrl}}" />
+                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
                 <div class="notifications green">{{card[1]}}</div>
             </article>
         </div>
@@ -130,7 +130,7 @@
             <div class="canvasWrapper">
                 <label>Mana Curve</label>
                 <canvas id="bar" width="250" height="250"></canvas>
-                <label>Card Types</label>
+                <label>Type Breakdown</label>
                 <canvas id="pie" width="250" height="250"></canvas>
             </div>
         </div>

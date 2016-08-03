@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9099707-956d-410f-a51b-08ef4662dacc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js" afterPath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html" afterPath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/css/app.css" afterPath="$PROJECT_DIR$/app/public/css/app.css" />
@@ -39,7 +40,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
+            <state relative-caret-position="606">
               <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
               <folding />
             </state>
@@ -49,35 +50,33 @@
       <file leaf-file-name="deck-builder.template.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="132" column="33" selection-start-line="132" selection-start-column="33" selection-end-line="132" selection-end-column="33" />
+            <state relative-caret-position="674">
+              <caret line="132" column="45" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="45" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#form#0;n#div#1;n#div#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="192" column="1" selection-start-line="192" selection-start-column="1" selection-end-line="192" selection-end-column="1" />
+            <state relative-caret-position="51">
+              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deck-builder.component.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="deck-builder.component.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="581">
-              <caret line="215" column="46" selection-start-line="215" selection-start-column="46" selection-end-line="215" selection-end-column="46" />
+            <state relative-caret-position="731">
+              <caret line="207" column="37" selection-start-line="207" selection-start-column="37" selection-end-line="207" selection-end-column="44" />
               <folding>
-                <element signature="e#4469#6261#0" expanded="false" />
-                <element signature="e#6387#6854#0" expanded="false" />
+                <element signature="e#6424#6891#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -125,9 +124,9 @@
         <option value="$PROJECT_DIR$/app/public/components/card-search/card-search.component.spec.js" />
         <option value="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.spec.js" />
         <option value="$PROJECT_DIR$/app/views/index.html" />
-        <option value="$PROJECT_DIR$/app/public/css/app.css" />
         <option value="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html" />
         <option value="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js" />
+        <option value="$PROJECT_DIR$/app/public/css/app.css" />
       </list>
     </option>
   </component>
@@ -565,12 +564,12 @@
       <updated>1469298063708</updated>
       <workItem from="1469298064842" duration="5892000" />
       <workItem from="1469304658149" duration="110333000" />
-      <workItem from="1469995181285" duration="18223000" />
+      <workItem from="1469995181285" duration="22836000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134448000" />
+    <option name="totallyTimeSpent" value="139061000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1934" height="1047" extended-state="0" />
@@ -624,8 +623,7 @@
           <caret line="84" column="20" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
           <folding>
             <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#form#0;n#div#1;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -635,8 +633,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4469#6261#0" expanded="false" />
-            <element signature="e#6387#6854#0" expanded="false" />
+            <element signature="e#6424#6891#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -787,7 +784,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
+        <state relative-caret-position="606">
           <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
           <folding />
         </state>
@@ -795,32 +792,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="132" column="33" selection-start-line="132" selection-start-column="33" selection-end-line="132" selection-end-column="33" />
+        <state relative-caret-position="674">
+          <caret line="132" column="45" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="45" />
           <folding>
             <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#form#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="207" column="37" selection-start-line="207" selection-start-column="37" selection-end-line="207" selection-end-column="44" />
+          <folding>
+            <element signature="e#6424#6891#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="192" column="1" selection-start-line="192" selection-start-column="1" selection-end-line="192" selection-end-column="1" />
+        <state relative-caret-position="51">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="215" column="46" selection-start-line="215" selection-start-column="46" selection-end-line="215" selection-end-column="46" />
-          <folding>
-            <element signature="e#4469#6261#0" expanded="false" />
-            <element signature="e#6387#6854#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

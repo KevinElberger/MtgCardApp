@@ -3,11 +3,6 @@ html, body {
     font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;;
 }
 
-body {
-    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    padding-top: 50px;
-}
-
 article {
     display: inline;
 }
@@ -171,7 +166,7 @@ header {
 }
 
 .form-control:focus {
-    border-color: #5cb85c;
+    border-color: #4cbe83;
     box-shadow: none;
     -webkit-box-shadow: none;
 }
@@ -190,4 +185,14 @@ header {
     width: 70%;
     height: 70%;
     margin: 0 auto;
+}
+
+.btn-success {
+    background-color: #4cbe83;
+    border-color: #4cbe83;
+}
+
+.btn-success:hover {
+    background-color: #3da971;
+    border-color: #3da971;
 }
