@@ -14,6 +14,7 @@ angular.module('deckBuilder').
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = [];
             this.cardTypes = [0,0,0,0,0,0,0];
+            this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0}, {color: "Blue", count: 0}, {color: "Red", count: 0}, {color: "Green", count: 0}];
             this.cardCount = 0;
             this.average = 0;
             this.sum = 0;
@@ -34,7 +35,7 @@ angular.module('deckBuilder').
                 that.cardCount += quantity;
                 mtgAPIservice.getCards(card).then(function(response) {
                     var data = response.data.cards[response.data.cards.length-1];
-                    console.log(data);
+                    // console.log(data);
                     var cardType = response.data.cards[response.data.cards.length-1].types[0];
 
                     // Obtain last card (most recent) from response and push into card stats array
@@ -52,6 +53,8 @@ angular.module('deckBuilder').
                         }
                     }
                     if (!that.hasCard(card, quantity)) {
+                        // Record color types for polar area chart
+                        that.recordColor(data, quantity);
                         switch (cardType) {
                             case "Creature":
                                 that.cardTypes[0]++;
@@ -83,6 +86,7 @@ angular.module('deckBuilder').
                                 break;
                         }
                     }
+                    // Update statistics graphs
                     that.displayStats();
                 });
             };
@@ -128,6 +132,20 @@ angular.module('deckBuilder').
                 return false;
             };
 
+            this.recordColor = function(card, quantity) {
+                console.log(card);
+                if (card.colors) {
+                    for (var i = 0; i < that.cardColors.length; i++) {
+                        for (var j = 0; j < that.cardColors.length; j++) {
+                            if (card.colors[j] == that.cardColors[i].color) {
+                                that.cardColors[i].count+= quantity;
+                                break;
+                            }
+                        }
+                    }
+                }
+            };
+
             // Saves deck as local text file
             this.saveDeck = function(deckFormat, mainBoard, sideBoard, notes) {
                 var format = "Deck Format: " + deckFormat + "\r\n";
@@ -150,9 +168,11 @@ angular.module('deckBuilder').
 
             this.computeStats = function() {
                 that.average = that.sum / that.cardCount;
-                $('.canvasWrapper').empty();
-                $('.canvasWrapper').append('<label>Mana Curve</label><canvas id="bar" width="250" height="250"></canvas>' +
-                '<label>Type Breakdown</label><canvas id="pie" width="250" height="250"></canvas>');
+                var statWrap = document.getElementById("statisticsWrapper");
+                statWrap.classList.remove("hidden");
+                $('.canvasWrapper').empty().append('<label>Mana Curve</label><canvas id="bar" width="250" height="250"></canvas>' +
+                '<label>Type Breakdown</label><canvas id="pie" width="250" height="250"></canvas><br/>' + '<label>Color Breakdown</label>' +
+                '<canvas id="polar" width="250" height="250"></canvas>');
                 var ctx = document.getElementById('bar').getContext('2d');
                 var myBarChart = new Chart(ctx, {
                     type: 'bar',
@@ -219,6 +239,32 @@ angular.module('deckBuilder').
                             responsiveAnimationDuration: 1000,
                             maintainAspectRatio: false
                         }
+                    }
+                });
+
+                var polar = document.getElementById('polar').getContext('2d');
+                var myPolarChart = new Chart(polar, {
+                    type: 'polarArea',
+                    data: {
+                        datasets: [{
+                            data: [that.cardColors[0].count,that.cardColors[1].count,that.cardColors[2].count,
+                                that.cardColors[3].count,that.cardColors[4].count],
+                            backgroundColor: [
+                                    "#FFD666",
+                                    "#000000",
+                                    "#4C8BB0",
+                                    "#FF8B66",
+                                    "#4C8BB0"
+                            ],
+                            label: 'Deck Colors' // legend
+                        }],
+                        labels: [
+                            "White",
+                            "Black",
+                            "Blue",
+                            "Red",
+                            "Green"
+                        ]
                     }
                 });
             };
