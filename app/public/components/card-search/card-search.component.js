@@ -70,12 +70,16 @@ angular.module('cardSearch').
             };
 
             this.update = function(set) {
+                $('.setbtn').click(function() {
+                    $('.setbtn.selected').removeClass('selected');
+                   $(this).addClass('selected');
+                });
                 for (var i = 0; i < that.cardList.length; i++) {
                     if (that.cardList[i].set == set) {
                         // Replace card image
                         $('#imgResult').empty().append("<img id='searchImg' class='searchImg' src="+ that.cardList[i].imageUrl +" />");
                         $('.results').empty();
-                        if (that.cardList[0].power !== undefined && that.cardList[0].toughness !== undefined) {
+                        if (that.cardList[i].power !== undefined && that.cardList[i].toughness !== undefined) {
                             $("<div style='display: none;'><p><strong>Name: </strong>" + that.cardList[i].name + " </p>" +
                                 "<p><strong>Artist: </strong>" + that.cardList[i].artist + "</p>" +
                                 "<p><strong>Rarity: </strong>" + that.cardList[i].rarity + "</p>" +

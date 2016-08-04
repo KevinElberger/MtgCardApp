@@ -226,6 +226,8 @@ header {
 
 .placeholder {
     padding-top: 4em;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .sets {
@@ -234,8 +236,25 @@ header {
 
 .cardStats, .priceStats {
     margin: 0 auto;
+    display: inline-block;
 }
 
 .setButtons {
     display: inline-block;
+}
+
+.setbtn:hover, .setbtn:active {
+    background-color: #4cbe83;
+    border-color: #3da971;
+    color: #ffffff;
+}
+
+.selected, .selected:hover, .selected:active {
+    background: #4cbe83;
+    border-color: #3da971;
+    color: #ffffff;
+}
+
+.firstRow {
+    margin: 0 auto;
 }

@@ -29,7 +29,7 @@
             <div class="setsWrapper">
                 <ul>
                     <li class="setButtons" ng-repeat="card in $ctrl.cardList">
-                        <input type="button" class="btn btn-default" ng-click="$ctrl.update(card.set)" value={{card.set}} />
+                        <input type="button" id="btn{{$index}}" class="btn btn-default setbtn" ng-click="$ctrl.update(card.set)" value={{card.set}} />
                     </li>
                 </ul>
             </div>
