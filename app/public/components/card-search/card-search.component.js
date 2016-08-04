@@ -34,7 +34,6 @@ angular.module('cardSearch').
                                 $("<div style='display: none;'><p><strong>Name: </strong>" + that.cardList[0].name + " </p>" +
                                     "<p><strong>Artist: </strong>" + that.cardList[0].artist + "</p>" +
                                     "<p><strong>Rarity: </strong>" + that.cardList[0].rarity + "</p>" +
-                                    "<p><strong>Sets: </strong>" +
                                     "<p><strong>P/T: </strong> / </p>" +
                                     "<p><strong>Card Text: </strong>" + that.cardList[0].text + "</p>" +
                                     "<p><strong>Flavor: </strong><em>" + that.cardList[0].flavor + "</em></p></div>").appendTo($('.results')).slideDown('slow');
@@ -73,7 +72,24 @@ angular.module('cardSearch').
             this.update = function(set) {
                 for (var i = 0; i < that.cardList.length; i++) {
                     if (that.cardList[i].set == set) {
-                        $('#imgResult').empty().append("<img id='searchImg' class='searchImg' ng-src='"+ that.cardList[i].imageUrl +"' />");
+                        // Replace card image
+                        $('#imgResult').empty().append("<img id='searchImg' class='searchImg' src="+ that.cardList[i].imageUrl +" />");
+                        $('.results').empty();
+                        if (that.cardList[0].power !== undefined && that.cardList[0].toughness !== undefined) {
+                            $("<div style='display: none;'><p><strong>Name: </strong>" + that.cardList[i].name + " </p>" +
+                                "<p><strong>Artist: </strong>" + that.cardList[i].artist + "</p>" +
+                                "<p><strong>Rarity: </strong>" + that.cardList[i].rarity + "</p>" +
+                                "<p><strong>P/T: </strong>" + that.cardList[i].power + " / " + that.cardList[i].toughness + "</p>" +
+                                "<p><strong>Card Text: </strong>" + that.cardList[i].text + "</p>" +
+                                "<p><strong>Flavor: </strong><em>" + that.cardList[i].flavor + "</em></p></div>").appendTo($('.results')).slideDown('slow');
+                        } else {
+                            $("<div style='display: none;'><p><strong>Name: </strong>" + that.cardList[i].name + " </p>" +
+                                "<p><strong>Artist: </strong>" + that.cardList[i].artist + "</p>" +
+                                "<p><strong>Rarity: </strong>" + that.cardList[i].rarity + "</p>" +
+                                "<p><strong>P/T: </strong> / </p>" +
+                                "<p><strong>Card Text: </strong>" + that.cardList[i].text + "</p>" +
+                                "<p><strong>Flavor: </strong><em>" + that.cardList[i].flavor + "</em></p></div>").appendTo($('.results')).slideDown('slow');
+                        }
                     }
                 }
             }

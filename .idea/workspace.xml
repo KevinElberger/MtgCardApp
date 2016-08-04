@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9099707-956d-410f-a51b-08ef4662dacc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/components/card-search/card-search.component.js" afterPath="$PROJECT_DIR$/app/public/components/card-search/card-search.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/components/card-search/card-search.template.html" afterPath="$PROJECT_DIR$/app/public/components/card-search/card-search.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/css/app.css" afterPath="$PROJECT_DIR$/app/public/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/index.html" afterPath="$PROJECT_DIR$/app/views/index.html" />
     </list>
     <ignored path="MtgCardApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,11 +66,13 @@
       <file leaf-file-name="card-search.component.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="802">
-              <caret line="75" column="133" selection-start-line="75" selection-start-column="102" selection-end-line="75" selection-end-column="133" />
+            <state relative-caret-position="734">
+              <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
               <folding>
-                <marker date="1470284523293" expanded="true" signature="1389:1403" ph="..." />
-                <marker date="1470284523293" expanded="true" signature="2164:2178" ph="..." />
+                <marker date="1470285527112" expanded="true" signature="1389:1403" ph="..." />
+                <marker date="1470285527112" expanded="true" signature="2164:2178" ph="..." />
+                <marker date="1470285527112" expanded="true" signature="5005:5019" ph="..." />
+                <marker date="1470285527112" expanded="true" signature="5752:5766" ph="..." />
               </folding>
             </state>
           </provider>
@@ -413,12 +411,12 @@
       <workItem from="1469298064842" duration="5892000" />
       <workItem from="1469304658149" duration="110333000" />
       <workItem from="1469995181285" duration="46554000" />
-      <workItem from="1470279310788" duration="5138000" />
+      <workItem from="1470279310788" duration="6114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167917000" />
+    <option name="totallyTimeSpent" value="168893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1934" height="1047" extended-state="0" />
@@ -498,8 +496,10 @@
         <state relative-caret-position="612">
           <caret line="36" column="67" selection-start-line="36" selection-start-column="67" selection-end-line="36" selection-end-column="67" />
           <folding>
-            <marker date="1470284523293" expanded="true" signature="1389:1403" ph="..." />
-            <marker date="1470284523293" expanded="true" signature="2164:2178" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="1389:1403" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="2164:2178" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="5005:5019" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="5752:5766" ph="..." />
           </folding>
         </state>
       </provider>
@@ -711,11 +711,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.component.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="802">
-          <caret line="75" column="133" selection-start-line="75" selection-start-column="102" selection-end-line="75" selection-end-column="133" />
+        <state relative-caret-position="734">
+          <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
           <folding>
-            <marker date="1470284523293" expanded="true" signature="1389:1403" ph="..." />
-            <marker date="1470284523293" expanded="true" signature="2164:2178" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="1389:1403" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="2164:2178" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="5005:5019" ph="..." />
+            <marker date="1470285527112" expanded="true" signature="5752:5766" ph="..." />
           </folding>
         </state>
       </provider>
