@@ -227,3 +227,15 @@ header {
 .placeholder {
     padding-top: 4em;
 }
+
+.sets {
+    text-align: center;
+}
+
+.cardStats, .priceStats {
+    margin: 0 auto;
+}
+
+.setButtons {
+    display: inline-block;
+}

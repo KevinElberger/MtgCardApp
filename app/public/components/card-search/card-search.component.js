@@ -5,16 +5,15 @@ angular.module('cardSearch').
             this.cardList = [];
             this.hidden = 'hidden';
             this.token = '';
-            this.clicked = 0;
             this.price = [0,0,0]; // high, low, mid
             var that = this;
 
-            this.search = function(name) {
-                that.clicked++;
+            this.search = function(name, set) {
+                $('.results').empty();
                 mtgAPIservice.getCards(name).then(function(response) {
                     // Obtain relevant data from response
                     that.cardList = response.data.cards;
-
+                    console.log(that.cardList);
                     mtgAPIservice.getToken().then(function(response) {
                         that.token = response;
 
@@ -24,17 +23,24 @@ angular.module('cardSearch').
                             that.price[2] = response.data.card.tcg_mid;
 
                             // Append card stats to results div
-                            $('.results').empty().append(
-                                "<p><strong>Name: </strong>" + that.cardList[0].name + " </p>" +
-                                "<p><strong>Artist: </strong>" + that.cardList[0].artist + "</p>" +
-                                "<p><strong>Rarity: </strong>" + that.cardList[0].rarity + "</p>" +
-                                "<p><strong>P/T: </strong>" + that.cardList[0].power + " / " + that.cardList[0].toughness + "</p>" +
-                                "<p><strong>Card Text: </strong>" + that.cardList[0].text + "</p>" +
-                                "<p><strong>Flavor: </strong><em>" + that.cardList[0].flavor + "</em></p>");
+                            if (that.cardList[0].power !== undefined && that.cardList[0].toughness !== undefined) {
+                                $("<div style='display: none;'><p><strong>Name: </strong>" + that.cardList[0].name + " </p>" +
+                                    "<p><strong>Artist: </strong>" + that.cardList[0].artist + "</p>" +
+                                    "<p><strong>Rarity: </strong>" + that.cardList[0].rarity + "</p>" +
+                                    "<p><strong>P/T: </strong>" + that.cardList[0].power + " / " + that.cardList[0].toughness + "</p>" +
+                                    "<p><strong>Card Text: </strong>" + that.cardList[0].text + "</p>" +
+                                    "<p><strong>Flavor: </strong><em>" + that.cardList[0].flavor + "</em></p></div>").appendTo($('.results')).slideDown('slow');
+                            } else {
+                                $("<div style='display: none;'><p><strong>Name: </strong>" + that.cardList[0].name + " </p>" +
+                                    "<p><strong>Artist: </strong>" + that.cardList[0].artist + "</p>" +
+                                    "<p><strong>Rarity: </strong>" + that.cardList[0].rarity + "</p>" +
+                                    "<p><strong>Sets: </strong>" +
+                                    "<p><strong>P/T: </strong> / </p>" +
+                                    "<p><strong>Card Text: </strong>" + that.cardList[0].text + "</p>" +
+                                    "<p><strong>Flavor: </strong><em>" + that.cardList[0].flavor + "</em></p></div>").appendTo($('.results')).slideDown('slow');
+                            }
 
                             // Append line chart with item prices
-                            var sImg = document.getElementById('searchImg');
-                            sImg.classList.remove('hidden');
                             $('.canvasWrapper').empty().append('<label>Price</label><canvas id="line" width="450" height="450"></canvas>');
                             var ctx = document.getElementById('line').getContext('2d');
                             var myLineChart = new Chart(ctx, {
@@ -56,9 +62,20 @@ angular.module('cardSearch').
                                     ]
                                 }
                             });
+                            // Display card image
+                            var sImg = document.getElementById('searchImg');
+                            sImg.classList.remove('hidden');
                         });
                     });
                 });
             };
+
+            this.update = function(set) {
+                for (var i = 0; i < that.cardList.length; i++) {
+                    if (that.cardList[i].set == set) {
+                        $('#imgResult').empty().append("<img id='searchImg' class='searchImg' ng-src='"+ that.cardList[i].imageUrl +"' />");
+                    }
+                }
+            }
         }
     });
