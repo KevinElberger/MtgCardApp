@@ -19,11 +19,29 @@
             </fieldset>
 
             <fieldset class="form-group">
-                <label for="cardQuantity">QUANTITY</label>
-                <input ng-model="quantity" type="number" class="form-control" id="cardQuantity" min="1" max="100" required="required">
+                <br/>
+                <div class="radioWrapper">
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="board" ng-value="true" checked>
+                            Mainboard
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="radio-inline">
+                            <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="board" ng-value="false">
+                            Sideboard
+                        </label>
+                    </div>
+                </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="form-group">
+                <label>DECK NAME</label>
+                <input type="text" class="form-control" placeholder="Deck Name" />
+            </fieldset>
+
+            <fieldset class="form-group">
                 <label for="deckFormat">FORMAT</label>
                 <select id="deckFormat" class="form-control" ng-model="deckFormat">
                     <option selected>Standard</option>
@@ -41,19 +59,6 @@
                 </select>
             </fieldset>
 
-            <div class="radio">
-                <label class="radio-inline">
-                    <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="board" ng-value="true" checked>
-                    Mainboard
-                </label>
-            </div>
-            <div class="radio">
-                <label class="radio-inline">
-                    <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="board" ng-value="false">
-                    Sideboard
-                </label>
-            </div>
-
             <div class="{{$ctrl.hidden}}">
                 <br/>
                 <img ng-src="{{$ctrl.cardList[0].imageUrl}}" />
@@ -61,66 +66,15 @@
 
             <fieldset class="form-group">
                 <br/>
-                <label for="notes">DECK NOTES</label>
+                <label for="notes">DECK DESCRIPTION</label>
                 <textarea ng-model="notes" class="form-control" id="notes" rows="8"></textarea>
                 <br/>
             </fieldset>
         </form>
     </div>
     <div class="col-md-8">
-        <div class="creatures">
-            <header>
-                <h4><img class="logo" src="img/Creature_symbol.png"> Creatures</h4>
-            </header>
-            <article ng-repeat="card in $ctrl.creatures">
-                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-                <div class="notifications green">{{card[1]}}</div>
-            </article>
-        </div>
-        <div class="artifacts">
-            <header>
-                <h4><img class="logo" src="img/Artifact_symbol.png"> Artifacts</h4>
-            </header>
-            <article ng-repeat="card in $ctrl.artifacts">
-                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-                <div class="notifications green">{{card[1]}}</div>
-            </article>
-        </div>
-        <div class="enchantments">
-            <header>
-                <h4><img class="logo" src="img/Enchantment_symbol.png"> Enchantments</h4>
-            </header>
-            <article ng-repeat="card in $ctrl.enchantments">
-                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-                <div class="notifications green">{{card[1]}}</div>
-            </article>
-        </div>
-        <div class="spells">
-            <header>
-                <h4><img class="logo" src="img/Sorcery_symbol.jpg">  Spells</h4>
-            </header>
-            <article ng-repeat="card in $ctrl.spells">
-                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-                <div class="notifications green">{{card[1]}}</div>
-            </article>
-        </div>
-        <div class="planeswalkers">
-            <header>
-                <h4><img class="planeswalker" src="img/Planeswalker_symbol.png"> Planeswalkers</h4>
-            </header>
-            <article ng-repeat="card in $ctrl.planeswalkers">
-                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-                <div class="notifications green">{{card[1]}}</div>
-            </article>
-        </div>
-        <div class="lands">
-            <header>
-                <h4><img class="logo" src="img/Land_symbol.png"> Lands</h4>
-            </header>
-            <article ng-repeat="card in $ctrl.lands">
-                <img class="cardImg" ng-src="{{card[0].imageUrl}}" />
-                <div class="notifications green">{{card[1]}}</div>
-            </article>
+        <div class="deck">
+            <img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.cardStats"/><br />
         </div>
     </div>
     <div class="col-md-2">

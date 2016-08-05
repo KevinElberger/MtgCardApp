@@ -17,21 +17,8 @@ strong {
     color: #333;
 }
 
-article {
-    display: inline;
-}
-
 textarea {
     resize: none;
-}
-
-img {
-    zoom: 30%;
-    padding-bottom: 1em;
-}
-
-.cardImg:hover {
-    zoom: 80%;
 }
 
 header {
@@ -151,7 +138,8 @@ header {
     min-height: 10em;
 }
 
-.creatures, .enchantments, .planeswalkers {
+.creatures, .enchantments, .planeswalkers, .deck {
+    min-height: 10em;
     background-color: #F7F7F7;
     border-top: 1px solid #F1F1F1;
     border-bottom: 1px solid #F1F1F1;
@@ -257,4 +245,35 @@ header {
 
 .firstRow {
     margin: 0 auto;
+}
+
+.radio {
+    display: inline;
+}
+
+.radioWrapper {
+    margin: 0 auto;
+    text-align: center;
+}
+
+img {
+    zoom: 60%;
+}
+
+.deck {
+    position: relative;
+    height: 750px;
+}
+
+.cardImg:hover {
+    zoom: 80%;
+    z-index: 9999;
+}
+
+.card {
+    position: absolute;
+}
+
+.card:not(:first-child) {
+    margin-top: 80px;
 }

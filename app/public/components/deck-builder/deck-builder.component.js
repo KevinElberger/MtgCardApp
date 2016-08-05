@@ -2,14 +2,6 @@ angular.module('deckBuilder').
     component('deckBuilder', {
         templateUrl: 'components/deck-builder/deck-builder.template.html',
         controller: function DeckBuilderController($scope, mtgAPIservice) {
-            this.creatures = [];
-            this.artifacts = [];
-            this.enchantments = [];
-            this.spells = [];
-            this.planeswalkers = [];
-            this.lands = [];
-            this.mainBoard = ""; // Card names for main board
-            this.sideBoard = ""; // Card names for side board
             this.card = "";
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = [];
@@ -21,126 +13,70 @@ angular.module('deckBuilder').
             this.cmc = [0,0,0,0,0,0,0,0];
             var that = this;
 
-            // this.search = function(name) {
-            //     mtgAPIservice.getCards(name).then(function(response) {
-            //         // Obtain relevant data from response
-            //         that.cardList = response.data.cards;
-            //     });
-            //     this.hidden = '';
-            // };
-
             // Adds cards to either mainboard or sideboard
             // and stores cards for statistics
-            this.addCard = function(card, quantity, board, format) {
-                if (quantity > 0) {
-                    that.cardCount += quantity;
-                    mtgAPIservice.getCards(card).then(function (response) {
-                        var data = response.data.cards[response.data.cards.length - 1];
-                        // console.log(data);
-                        var cardType = response.data.cards[response.data.cards.length - 1].types[0];
+            this.addCard = function(card) {
+                // if (quantity > 0) {
+                //     that.cardCount += quantity;
+                    that.cardCount++;
 
-                        // Obtain last card (most recent) from response and push into card stats array
-                        that.cardStats.push([{"quantity": quantity}, {"card": response.data.cards[response.data.cards.length - 1]}]);
-                        // Keep track of cmc and push in appropriate array slot
-                        if (that.cardStats[that.cardStats.length - 1][1].card.cmc) {
-                            that.sum += (that.cardStats[that.cardStats.length - 1][1].card.cmc * quantity);
-                            for (var j = 0; j < 8; j++) {
-                                if (j == that.cardStats[that.cardStats.length - 1][1].card.cmc) {
-                                    that.cmc[j] += that.cardStats[that.cardStats.length - 1][0].quantity;
-                                }
-                            }
-                            if (that.cardStats[that.cardStats.length - 1][1].card.cmc > 7) {
-                                that.cmc[7] += that.cardStats[that.cardStats.length - 1][0].quantity;
+                // Get card from API
+                mtgAPIservice.getCards(card).then(function (response) {
+                    var data = response.data.cards[response.data.cards.length - 1];
+                    var cardType = response.data.cards[response.data.cards.length - 1].types[0];
+
+                    // Obtain last card (most recent) from response and push into card stats array
+                    that.cardStats.push(response.data.cards[response.data.cards.length - 1]);
+                    // Keep track of cmc and push in appropriate array slot
+                    if (that.cardStats[that.cardStats.length - 1].cmc) {
+                        that.sum += that.cardStats[that.cardStats.length - 1].cmc;
+                        for (var j = 0; j < 8; j++) {
+                            if (j == that.cardStats[that.cardStats.length - 1].cmc) {
+                                that.cmc[j] ++;
                             }
                         }
-                        if (!that.hasCard(card, quantity)) {
-                            // Record color types for polar area chart
-                            that.recordColor(data, quantity);
-                            switch (cardType) {
-                                case "Creature":
-                                    that.cardTypes[0]+= quantity;
-                                    that.creatures.push([data, quantity]);
-                                    break;
-                                case "Sorcery":
-                                    that.cardTypes[1]+= quantity;
-                                    that.spells.push([data, quantity]);
-                                    break;
-                                case "Instant":
-                                    that.cardTypes[2]+= quantity;
-                                    that.spells.push([data, quantity]);
-                                    break;
-                                case "Artifact":
-                                    that.cardTypes[3]+= quantity;
-                                    that.artifacts.push([data, quantity]);
-                                    break;
-                                case "Enchantment":
-                                    that.cardTypes[4]+= quantity;
-                                    that.enchantments.push([data, quantity]);
-                                    break;
-                                case "Planeswalker":
-                                    that.cardTypes[5]+= quantity;
-                                    that.planeswalkers.push([data, quantity]);
-                                    break;
-                                default:
-                                    that.cardTypes[6]+= quantity;
-                                    that.lands.push([data, quantity]);
-                                    break;
-                            }
+                        if (that.cardStats[that.cardStats.length - 1].cmc > 7) {
+                            that.cmc[7] ++;
                         }
-                        // Update statistics graphs
-                        that.displayStats();
-                    });
-                }
+                    }
+                    // Record color and quantity for polar chart
+                    that.recordColor(data);
+
+                    switch (cardType) {
+                        case "Creature":
+                            that.cardTypes[0]++;
+                            break;
+                        case "Sorcery":
+                            that.cardTypes[1]++;
+                            break;
+                        case "Instant":
+                            that.cardTypes[2]++;
+                            break;
+                        case "Artifact":
+                            that.cardTypes[3]++;
+                            break;
+                        case "Enchantment":
+                            that.cardTypes[4]++;
+                            break;
+                        case "Planeswalker":
+                            that.cardTypes[5]++;
+                            break;
+                        default:
+                            // Lands
+                            that.cardTypes[6]++;
+                            break;
+                    }
+                    // Update statistics graphs
+                    that.displayStats();
+                });
             };
 
-            // Check if card is already listed so only quantity needs to be updated
-            this.hasCard = function(name, quantity) {
-                for (var i = 0; i < that.creatures.length; i++) {
-                    if (that.creatures[i][0].name.toUpperCase() === name.toUpperCase()) {
-                        that.creatures[i][1] += quantity;
-                        return true;
-                    }
-                }
-                for (var j = 0; j < that.artifacts.length; j++) {
-                    if (that.artifacts[j][0].name.toUpperCase() === name.toUpperCase()) {
-                        that.artifacts[j][1] += quantity;
-                        return true;
-                    }
-                }
-                for (var k = 0; k < that.enchantments.length; k++) {
-                    if (that.enchantments[k][0].name.toUpperCase() === name.toUpperCase()) {
-                        that.enchantments[k][1] += quantity;
-                        return true;
-                    }
-                }
-                for (var l = 0; l < that.spells.length; l++) {
-                    if (that.spells[l][0].name.toUpperCase() === name.toUpperCase()) {
-                        that.spells[l][1] += quantity;
-                        return true;
-                    }
-                }
-                for (var m = 0; m < that.lands.length; m++) {
-                    if (that.lands[m][0].name.toUpperCase() === name.toUpperCase()) {
-                        that.lands[m][1] += quantity;
-                        return true;
-                    }
-                }
-                for (var n = 0; n < that.planeswalkers.length; n++) {
-                    if (that.planeswalkers[n][0].name.toUpperCase() === name.toUpperCase()) {
-                        that.planeswalkers[n][1] += quantity;
-                        return true;
-                    }
-                }
-                return false;
-            };
-
-            this.recordColor = function(card, quantity) {
-                console.log(card);
+            this.recordColor = function(card) {
                 if (card.colors) {
                     for (var i = 0; i < that.cardColors.length; i++) {
                         for (var j = 0; j < that.cardColors.length; j++) {
                             if (card.colors[j] == that.cardColors[i].color) {
-                                that.cardColors[i].count+= quantity;
+                                that.cardColors[i].count++;
                                 break;
                             }
                         }
@@ -174,7 +110,7 @@ angular.module('deckBuilder').
                 statWrap.classList.remove("hidden");
                 $('.canvasWrapper').empty().append('<label>Mana Curve</label><canvas id="bar" width="250" height="250"></canvas>' +
                 '<label>Type Breakdown</label><canvas id="pie" width="250" height="250"></canvas><br/>' + '<label>Color Breakdown</label>' +
-                '<canvas id="polar" width="250" height="250"></canvas>');
+                '<canvas id="polar" width="300" height="300"></canvas>');
                 var ctx = document.getElementById('bar').getContext('2d');
                 var myBarChart = new Chart(ctx, {
                     type: 'bar',
@@ -229,7 +165,7 @@ angular.module('deckBuilder').
                                 backgroundColor: [
                                     "#4CBE84",
                                     "#FF8B66",
-                                    "#5B62BC",
+                                    "#4C8BB0",
                                     "#FFD666",
                                     "#DF5988",
                                     "#4C8BB0",
@@ -246,27 +182,30 @@ angular.module('deckBuilder').
 
                 var polar = document.getElementById('polar').getContext('2d');
                 var myPolarChart = new Chart(polar, {
-                    type: 'polarArea',
+                    type: 'doughnut',
                     data: {
-                        datasets: [{
-                            data: [that.cardColors[0].count,that.cardColors[1].count,that.cardColors[2].count,
-                                that.cardColors[3].count,that.cardColors[4].count],
-                            backgroundColor: [
-                                    "#FFD666",
-                                    "#000000",
-                                    "#4C8BB0",
-                                    "#FF8B66",
-                                    "#4C8BB0"
-                            ],
-                            label: 'Deck Colors' // legend
-                        }],
                         labels: [
                             "White",
                             "Black",
                             "Blue",
                             "Red",
                             "Green"
-                        ]
+                        ],
+                        datasets: [{
+                            data: [that.cardColors[0].count,that.cardColors[1].count,that.cardColors[2].count,
+                                that.cardColors[3].count,that.cardColors[4].count],
+                            backgroundColor: [
+                                    "#FFD666",
+                                    "#333333",
+                                    "#4C8BB0",
+                                    "#FF8B66",
+                                    "#4CBE84"
+                            ]
+                        }],
+                        options: {
+                            responsiveAnimationDuration: 1000,
+                            maintainAspectRatio: false
+                        }
                     }
                 });
             };
