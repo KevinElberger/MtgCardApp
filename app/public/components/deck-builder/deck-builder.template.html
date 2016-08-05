@@ -74,18 +74,9 @@
         </form>
     </div>
     <div class="col-md-8">
-        <div class="deck">
-            <div class="row">
-                <div class="row1"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row1"/><br /></div>
-            </div>
-            <div class="row">
-                <div class="row2"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row2"/><br /></div>
-            </div>
-            <div class="row">
-                <div class="row3"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row3"/><br /></div>
-            </div>
-            <div class="row">
-                <div class="row4"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row4"/><br /></div>
+        <div class="deckContainer">
+            <div id="deck" class="deck hidden">
+                <img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.cardStats"/><br />
             </div>
         </div>
     </div>
