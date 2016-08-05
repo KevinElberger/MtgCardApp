@@ -8,6 +8,7 @@
 </div>
     <div class="col-md-2">
         <form class="form deckbuilder">
+            <h3 class="text-center"><strong>Deck Info</strong></h3><br/>
             <fieldset class="form-group">
                 <label>CARD NAME</label>
                 <div class="input-group">
@@ -74,7 +75,18 @@
     </div>
     <div class="col-md-8">
         <div class="deck">
-            <img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.cardStats"/><br />
+            <div class="row">
+                <div class="row1"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row1"/><br /></div>
+            </div>
+            <div class="row">
+                <div class="row2"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row2"/><br /></div>
+            </div>
+            <div class="row">
+                <div class="row3"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row3"/><br /></div>
+            </div>
+            <div class="row">
+                <div class="row4"><img class="card cardImg" ng-src="{{card.imageUrl}}" ng-repeat="card in $ctrl.row4"/><br /></div>
+            </div>
         </div>
     </div>
     <div class="col-md-2">

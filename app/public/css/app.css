@@ -64,7 +64,6 @@ header {
 }
 
 .resultText {
-    /*background-color: #e3e3e3;*/
     background-color: #1c1c1c;
     color: white;
     text-align: left;
@@ -127,43 +126,15 @@ header {
     text-align: center;
 }
 
-.planeswalker {
-    zoom: 12%;
-    -moz-transform: scale(.12);
-}
-
-.creatures, .artifacts, .enchantments,
-    .spells, .planeswalkers, .lands {
-    /*padding: 10px 0;*/
-    min-height: 10em;
-}
-
-.creatures, .enchantments, .planeswalkers, .deck {
+.deck {
     min-height: 10em;
     background-color: #F7F7F7;
     border-top: 1px solid #F1F1F1;
     border-bottom: 1px solid #F1F1F1;
 }
 
-.notifications {
-    border-radius: 50%;
-    height: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 40px;
-    position: absolute;
-    text-align: center;
-    color: white;
-    width: 40px;
-    display: inline;
-}
-
 .green {
     background: #4cbe83;
-}
-
-.notificationwrapper {
-    display: inline;
 }
 
 .cardImg {
@@ -183,8 +154,6 @@ header {
 
 .statisticsWrapper {
     text-align: center;
-    background-color: #F2F2F2;
-    border: 1px solid #F2F2F2;
 }
 
 .canvasWrapper {
@@ -261,19 +230,22 @@ img {
 }
 
 .deck {
-    position: relative;
-    height: 750px;
+    height: 850px;
+    background-color: #F2F2F2;
+    border-radius: 0;
 }
 
 .cardImg:hover {
-    zoom: 80%;
+    zoom: 65%;
     z-index: 9999;
 }
 
 .card {
-    position: absolute;
+    float: left;
+    position: relative;
+    padding: 1em;
 }
 
 .card:not(:first-child) {
-    margin-top: 80px;
+    margin-left: -150px;
 }

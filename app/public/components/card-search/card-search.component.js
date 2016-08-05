@@ -61,7 +61,9 @@ angular.module('cardSearch').
                                     ]
                                 }
                             });
-                            // Display card image
+                            // Display card image & set display
+                            var set = document.getElementById('setTitle');
+                            set.classList.remove('hidden');
                             var sImg = document.getElementById('searchImg');
                             sImg.classList.remove('hidden');
                         });

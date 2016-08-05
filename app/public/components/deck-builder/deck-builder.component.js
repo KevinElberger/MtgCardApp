@@ -10,6 +10,7 @@ angular.module('deckBuilder').
             this.cardCount = 0;
             this.average = 0;
             this.sum = 0;
+            this.row1 = [], this.row2 = [], this.row3 = [], this.row4 = [];
             this.cmc = [0,0,0,0,0,0,0,0];
             var that = this;
 
@@ -18,12 +19,22 @@ angular.module('deckBuilder').
             this.addCard = function(card) {
                 // if (quantity > 0) {
                 //     that.cardCount += quantity;
-                    that.cardCount++;
 
                 // Get card from API
                 mtgAPIservice.getCards(card).then(function (response) {
                     var data = response.data.cards[response.data.cards.length - 1];
                     var cardType = response.data.cards[response.data.cards.length - 1].types[0];
+
+                    if (that.cardCount < 15) {
+                        that.row1.push(response.data.cards[response.data.cards.length-1]);
+                    } else if (that.cardCount >= 15 && that.cardCount < 30) {
+                        that.row2.push(response.data.cards[response.data.cards.length-1]);
+                    } else if (that.cardCount >= 30 && that.cardCount < 45) {
+                        that.row3.push(response.data.cards[response.data.cards.length-1]);
+                    } else if (that.cardCount >= 45 && that.cardCount < 60) {
+                        that.row4.push(response.data.cards[response.data.cards.length-1]);
+                    }
+                    that.cardCount++;
 
                     // Obtain last card (most recent) from response and push into card stats array
                     that.cardStats.push(response.data.cards[response.data.cards.length - 1]);

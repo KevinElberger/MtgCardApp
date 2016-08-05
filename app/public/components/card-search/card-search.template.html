@@ -25,8 +25,8 @@
     </div>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h4><strong>Sets</strong></h4>
-            <div class="setsWrapper">
+            <div id="setTitle" class="hidden setsWrapper">
+                <h4><strong>Sets</strong></h4>
                 <ul>
                     <li class="setButtons" ng-repeat="card in $ctrl.cardList">
                         <input type="button" id="btn{{$index}}" class="btn btn-default setbtn" ng-click="$ctrl.update(card.set)" value={{card.set}} />
