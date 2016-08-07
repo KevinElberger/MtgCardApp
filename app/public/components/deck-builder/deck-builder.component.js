@@ -106,7 +106,6 @@ angular.module('deckBuilder').
             };
 
             this.createChart = function(chart) {
-                console.log(chart.canvas.id);
                 if (chart.canvas.id == "polar") {
                     var doughnutChart = new Chart(chart, {
                         type: 'doughnut',

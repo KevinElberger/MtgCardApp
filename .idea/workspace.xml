@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9099707-956d-410f-a51b-08ef4662dacc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/components/card-search/card-search.component.js" afterPath="$PROJECT_DIR$/app/public/components/card-search/card-search.component.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js" afterPath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html" afterPath="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/css/app.css" afterPath="$PROJECT_DIR$/app/public/css/app.css" />
     </list>
     <ignored path="MtgCardApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,21 +54,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deck-builder.template.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html">
+      <file leaf-file-name="card-search.template.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1360">
-              <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
+            <state relative-caret-position="595">
+              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deck-builder.component.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="card-search.component.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.component.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1258">
+              <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+              <folding>
+                <marker date="1470591171971" expanded="true" signature="2142:2156" ph="..." />
+                <marker date="1470591171971" expanded="true" signature="2847:2861" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deck-builder.component.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1885">
-              <caret line="21" column="97" selection-start-line="21" selection-start-column="97" selection-end-line="21" selection-end-column="97" />
+            <state relative-caret-position="255">
+              <caret line="107" column="48" selection-start-line="107" selection-start-column="48" selection-end-line="107" selection-end-column="48" />
               <folding>
                 <element signature="e#3677#4144#0" expanded="false" />
               </folding>
@@ -120,10 +132,10 @@
         <option value="$PROJECT_DIR$/app/public/js/services.js" />
         <option value="$PROJECT_DIR$/app/views/index.html" />
         <option value="$PROJECT_DIR$/app/public/components/card-search/card-search.template.html" />
-        <option value="$PROJECT_DIR$/app/public/components/card-search/card-search.component.js" />
         <option value="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.template.html" />
         <option value="$PROJECT_DIR$/app/public/css/app.css" />
         <option value="$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js" />
+        <option value="$PROJECT_DIR$/app/public/components/card-search/card-search.component.js" />
       </list>
     </option>
   </component>
@@ -410,12 +422,12 @@
       <workItem from="1469298064842" duration="5892000" />
       <workItem from="1469304658149" duration="110333000" />
       <workItem from="1469995181285" duration="46554000" />
-      <workItem from="1470279310788" duration="27348000" />
+      <workItem from="1470279310788" duration="29592000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190127000" />
+    <option name="totallyTimeSpent" value="192371000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1934" height="1047" extended-state="0" />
@@ -495,10 +507,8 @@
         <state relative-caret-position="612">
           <caret line="36" column="67" selection-start-line="36" selection-start-column="67" selection-end-line="36" selection-end-column="67" />
           <folding>
-            <marker date="1470364579785" expanded="true" signature="1389:1403" ph="..." />
-            <marker date="1470364579785" expanded="true" signature="2164:2178" ph="..." />
-            <marker date="1470364579785" expanded="true" signature="5338:5352" ph="..." />
-            <marker date="1470364579785" expanded="true" signature="6085:6099" ph="..." />
+            <marker date="1470591171971" expanded="true" signature="2142:2156" ph="..." />
+            <marker date="1470591171971" expanded="true" signature="2847:2861" ph="..." />
           </folding>
         </state>
       </provider>
@@ -665,35 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-          <folding>
-            <marker date="1470364579785" expanded="true" signature="1389:1403" ph="..." />
-            <marker date="1470364579785" expanded="true" signature="2164:2178" ph="..." />
-            <marker date="1470364579785" expanded="true" signature="5338:5352" ph="..." />
-            <marker date="1470364579785" expanded="true" signature="6085:6099" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="554">
@@ -710,13 +691,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/public/components/deck-builder/deck-builder.component.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1885">
-          <caret line="21" column="97" selection-start-line="21" selection-start-column="97" selection-end-line="21" selection-end-column="97" />
+        <state relative-caret-position="255">
+          <caret line="107" column="48" selection-start-line="107" selection-start-column="48" selection-end-line="107" selection-end-column="48" />
           <folding>
             <element signature="e#3677#4144#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+          <folding>
+            <marker date="1470591171971" expanded="true" signature="2142:2156" ph="..." />
+            <marker date="1470591171971" expanded="true" signature="2847:2861" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/components/card-search/card-search.template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
