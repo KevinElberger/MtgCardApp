@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>MEAN Auth</title>
+  <!-- styles -->
+  <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+  <a class="navmenu-brand" href="">MTG Card App</a>
+  <ul class="nav navmenu-nav">
+    <li><a href="#/card">Card Search</a></li>
+    <li><a href="#/deckbuilder">Deck Builder</a></li>
+    <li><a href="#/logout">Log Out</a></li>
+  </ul>
+</nav>
+<div class="burgerWrapper">
+  <button type="button" class="hamburger" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+    &#9776
+  </button>
+</div>
+  
+  <div class="hero">
+    <div ng-view></div>
+  </div>
+
+  <!-- scripts -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="components/card-search/card-search.module.js"></script>
+  <script src="components/card-search/card-search.component.js"></script>
+  <script src="components/deck-builder/deck-builder.module.js"></script>
+  <script src="components/deck-builder/deck-builder.component.js"></script>
+  <script src="js/Chart.min.js"></script>
+  <script src="js/angular-chart.min.js"></script>
+  <script src="js/jasny-bootstrap.min.js"></script>
+  <script src="./main.js"></script>
+  <script src="./services.js"></script>
+  <script src="./controllers.js"></script>
+</body>
+</html>
