@@ -1,3 +1,17 @@
+<nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+    <a class="navmenu-brand" href="">MTG Card App</a>
+    <ul class="nav navmenu-nav">
+        <li><a href="#/card">Card Search</a></li>
+        <li><a href="#/deckbuilder">Deck Builder</a></li>
+        <li><a ng-controller="logoutController" ng-click="logout()">Log Out</a></li>
+    </ul>
+</nav>
+<div class="burgerWrapper">
+    <button type="button" class="hamburger" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+        &#9776
+    </button>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
