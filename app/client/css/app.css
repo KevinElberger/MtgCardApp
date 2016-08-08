@@ -253,3 +253,9 @@ img {
     margin-left: -150px;
     margin-bottom: 2em;
 }
+
+.loginWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
