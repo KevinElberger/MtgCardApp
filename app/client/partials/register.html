@@ -12,8 +12,9 @@
           <label>Password</label>
             <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
           </div>
-          <div>
-            <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
+          <div class="inline">
+            <button type="submit" class="btn btn-default inlineLeft" ng-disabled="disabled">Register</button>
+            <p class="inlineLeft">Already a member? <a href="#/login">Sign In</a></p>
           </div>
       </form>
     </div>
