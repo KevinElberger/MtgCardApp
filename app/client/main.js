@@ -4,7 +4,7 @@ myApp.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'partials/home.html',
-      access: {restricted: true}
+      access: {restricted: false}
     })
     .when('/login', {
       templateUrl: 'partials/login.html',
@@ -36,9 +36,9 @@ myApp.config(function ($routeProvider) {
 myApp.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
     function (event, next, current) {
-      $rootScope.isLoggedInAyy = AuthService.isLoggedIn();
       AuthService.getUserStatus()
       .then(function(){
+        $rootScope.isLoggedInAyy = AuthService.isLoggedIn();
         if (next.access.restricted && !AuthService.isLoggedIn()){
           $location.path('/login');
           $route.reload();

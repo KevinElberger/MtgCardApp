@@ -8,26 +8,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
-<div ng-show="isLoggedInAyy">
-  <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-    <a class="navmenu-brand" href="">MTG Card App</a>
-    <ul class="nav navmenu-nav">
-      <li><a href="#/card">Card Search</a></li>
-      <li><a href="#/deckbuilder">Deck Builder</a></li>
-      <li><a ng-controller="logoutController" ng-click="logout()">Log Out</a></li>
-    </ul>
-  </nav>
-  <div class="burgerWrapper">
-    <button type="button" class="hamburger" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
-      &#9776
-    </button>
-  </div>
-</div>
-  
-  <div class="hero">
-    <div ng-view></div>
-  </div>
+<body ng-view>
 
   <!-- scripts -->
   <script src="bower_components/angular/angular.js"></script>
