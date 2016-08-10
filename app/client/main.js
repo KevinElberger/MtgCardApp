@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'deckBuilder', 'cardSearch']);
+var myApp = angular.module('myApp', ['ngRoute', 'deckBuilder', 'cardSearch', 'profile']);
 
 myApp.config(function ($routeProvider) {
   $routeProvider
@@ -28,8 +28,8 @@ myApp.config(function ($routeProvider) {
       template: '<deck-builder></deck-builder>',
       access: {restricted: true}
     })
-    .when('/home', {
-      templateUrl: 'partials/home.html',
+    .when('/profile', {
+      template: '<profile></profile>',
       access: {restricted: true}
       })
     .otherwise({

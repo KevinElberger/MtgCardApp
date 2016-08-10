@@ -2,8 +2,9 @@
     <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
         <a class="navmenu-brand" href="">MTG Card App</a>
         <ul class="nav navmenu-nav">
+            <li><a href="#/profile">Your Profile</a></li>
             <li><a href="#/card">Card Search</a></li>
-            <li><a href="#/deckbuilder">Deck Builder</a></li>
+            <li><a href="#/deck">Deck Builder</a></li>
             <li><a ng-controller="logoutController" href="" ng-click="logout()">Log Out</a></li>
         </ul>
     </nav>
@@ -13,8 +14,18 @@
         </button>
     </div>
 </div>
+    <div class="profileHeader">
+        <div class="header-content">
+            <h1 class="titleText title text-center">Your Profile</h1>
+        </div>
+    </div>
 <div class="container">
     <div class="col-lg-12">
-        <h1 class="titleText title text-center">Your Profile</h1>
+        <div class="row profileRow">
+            <h3 class="text-center">Decks</h3>
+            <div ng-repeat="deck in $ctrl.decks">
+                <p>{{deck.name}}</p>
+            </div>
+        </div>
     </div>
 </div>

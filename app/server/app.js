@@ -46,6 +46,7 @@ passport.deserializeUser(User.deserializeUser());
 // routes
 app.use('/user/', routes);
 app.post('/deckbuilder', Deck.create);
+app.get('/profile', Deck.find);
 
 // error handlers
 app.use(function(req, res, next) {

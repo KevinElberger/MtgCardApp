@@ -20,7 +20,7 @@ exports.create = function (req, res) {
         name: req.body.name,
         format: req.body.format,
         description: req.body.description,
-        cardList: req.body.cards
+        cardList: [req.body.cards]
     });
     deck.save(function(err) {
         if (!err) {
@@ -32,6 +32,12 @@ exports.create = function (req, res) {
     return res.send(deck);
 };
 
-exports.findDecks = function(req, res) {
-    
+exports.find = function(req, res) {
+    return DeckModel.find({'owner': JSON.parse(sessionStorage.user)}, function(err, decks) {
+        if (!err) {
+            res.json(decks);
+        } else {
+            console.log(err);
+        }
+    });
 };

@@ -17,7 +17,7 @@ angular.module('deckBuilder').
                 $scope.form.user = $scope.user;
                 $scope.form.cards = that.cards;
                 console.log($scope.form);
-                $http.post('/deckbuilder', $scope.form, that.cards, $scope.user)
+                $http.post('/deckbuilder', $scope.form)
                     .success(function (data) {
                         console.log(data);
                     })
