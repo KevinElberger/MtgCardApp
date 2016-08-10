@@ -3,7 +3,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'deckBuilder', 'cardSearch']);
 myApp.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/home.html',
+      templateUrl: 'partials/landing.html',
       access: {restricted: false}
     })
     .when('/login', {
@@ -24,10 +24,14 @@ myApp.config(function ($routeProvider) {
       template: '<card-search></card-search>',
       access: {restricted: true}
     })
-    .when('/deckbuilder', {
+    .when('/deck', {
       template: '<deck-builder></deck-builder>',
       access: {restricted: true}
     })
+    .when('/home', {
+      templateUrl: 'partials/home.html',
+      access: {restricted: true}
+      })
     .otherwise({
       redirectTo: '/'
     });

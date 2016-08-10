@@ -23,30 +23,30 @@
     </div>
 </div>
     <div class="col-md-2">
-        <form class="form deckbuilder">
+
             <h3 class="text-center"><strong>Deck Info</strong></h3><br/>
             <fieldset class="form-group">
                 <label>CARD NAME</label>
                 <div class="input-group">
-                    <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" required="required" />
+                    <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" />
                     <span class="input-group-btn">
-                        <button ng-click="$ctrl.addCard(cardName, quantity, board, format)" id="addCard" class="btn btn-success">Add Card</button>
+                        <button ng-click="$ctrl.addCard(cardName, quantity, board)" id="addCard" class="btn btn-success">Add Card</button>
                     </span>
                 </div>
             </fieldset>
-
+        <form class="form deckbuilder" method="post">
             <fieldset class="form-group">
                 <br/>
                 <div class="radioWrapper">
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="board" ng-value="true" checked>
+                            <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="form.board" ng-value="true" checked>
                             Mainboard
                         </label>
                     </div>
                     <div class="radio">
                         <label class="radio-inline">
-                            <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="board" ng-value="false">
+                            <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="form.board" ng-value="false">
                             Sideboard
                         </label>
                     </div>
@@ -55,12 +55,12 @@
 
             <fieldset class="form-group">
                 <label>DECK NAME</label>
-                <input type="text" class="form-control" placeholder="Deck Name" />
+                <input type="text" class="form-control" placeholder="Deck Name" ng-model="form.name"/>
             </fieldset>
 
             <fieldset class="form-group">
                 <label for="deckFormat">FORMAT</label>
-                <select id="deckFormat" class="form-control" ng-model="deckFormat">
+                <select id="deckFormat" class="form-control" ng-model="form.format">
                     <option selected>Standard</option>
                     <option value="Legacy">Legacy</option>
                     <option value="Mtgo">MTGO</option>
@@ -84,9 +84,10 @@
             <fieldset class="form-group">
                 <br/>
                 <label for="notes">DECK DESCRIPTION</label>
-                <textarea ng-model="notes" class="form-control" id="notes" rows="8"></textarea>
+                <textarea ng-model="form.description" class="form-control" id="notes" rows="8"></textarea>
                 <br/>
             </fieldset>
+            <button type="submit" id="saveDeck" class="btn btn-success" ng-click="createDeck()">Save Deck</button>
         </form>
     </div>
     <div class="col-md-8">

@@ -12,7 +12,7 @@ angular.module('myApp').controller('loginController',
       AuthService.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
         .then(function () {
-          $location.path('/deckbuilder');
+          $location.path('/deck');
           $scope.disabled = false;
           $scope.loginForm = {};
         })
@@ -42,17 +42,17 @@ angular.module('myApp').controller('logoutController',
 
     };
 
-}]);
+    }]);
 
 angular.module('myApp').controller('registerController',
-  ['$scope', '$location', 'AuthService',
-  function ($scope, $location, AuthService) {
+    ['$scope', '$location', 'AuthService',
+      function ($scope, $location, AuthService) {
 
-    $scope.register = function () {
+        $scope.register = function () {
 
-      // initial values
-      $scope.error = false;
-      $scope.disabled = true;
+          // initial values
+          $scope.error = false;
+          $scope.disabled = true;
 
       // call register from service
       AuthService.register($scope.registerForm.username, $scope.registerForm.password)

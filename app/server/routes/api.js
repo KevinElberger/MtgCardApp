@@ -4,7 +4,6 @@ var passport = require('passport');
 
 var User = require('../models/user.js');
 
-
 router.post('/register', function(req, res) {
   User.register(new User({ username: req.body.username }),
     req.body.password, function(err, account) {
@@ -61,6 +60,5 @@ router.get('/status', function(req, res) {
     status: true
   });
 });
-
 
 module.exports = router;

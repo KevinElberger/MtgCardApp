@@ -15,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/mean-auth-master(1)');
 
 // user schema/model
 var User = require('./models/user.js');
+var Deck = require('./models/deck.js');
 
 // create instance of express
 var app = express();
@@ -45,11 +46,9 @@ passport.deserializeUser(User.deserializeUser());
 // routes
 app.use('/user/', routes);
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../client', 'index.html'));
-});
- 
-// error hndlers
+app.post('/deckbuilder', Deck.create);
+
+// error handlers
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

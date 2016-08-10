@@ -267,6 +267,7 @@ img {
 }
 
 .titleText {
+    font-weight: 200;
     font-size: 30px;
     line-height: 1.1;
 }
@@ -302,14 +303,18 @@ img {
 }
 
 .header-content {
-    position: absolute;
+    position: relative;
+    height: 50%;
+    width: 50%;
+    bottom: -30%;
+    margin: 0 auto;
     text-align: center;
-    bottom: 50%;
-    left: 35%;
+
 }
 
 .alt {
     background-color: Transparent;
+    margin: 0 auto;
     border: 1px solid;
 }
 

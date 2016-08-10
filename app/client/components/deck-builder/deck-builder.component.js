@@ -8,7 +8,22 @@ angular.module('deckBuilder').
             this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0}, {color: "Blue", count: 0}, {color: "Red", count: 0}, {color: "Green", count: 0}];
             this.cardCount = 0;
             this.cmc = [0,0,0,0,0,0,0,0];
+            $scope.form = {};
+            this.user = [];
+            $scope.user = JSON.parse(sessionStorage.user);
             var that = this;
+
+            $scope.createDeck = function() {
+                console.log($scope.form);
+                console.log(that.cardStats);
+                // $http.post('/deckbuilder', $scope.form, that.cardStats)
+                //     .success(function (data) {
+                //         console.log(data);
+                //     })
+                //     .error(function( data) {
+                //         console.log(data);
+                //     });
+            };
 
             // Adds cards for statistics and display purposes
             // @param card (String) - card name
