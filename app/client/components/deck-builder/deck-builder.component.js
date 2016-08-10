@@ -1,7 +1,7 @@
 angular.module('deckBuilder').
     component('deckBuilder', {
         templateUrl: 'components/deck-builder/deck-builder.template.html',
-        controller: function DeckBuilderController($scope, mtgAPIservice) {
+        controller: function DeckBuilderController($scope, mtgAPIservice, $http) {
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = []; // Collection of cards
             this.cardTypes = [0,0,0,0,0,0,0]; // Creature, sorcery, instant, artifact, enchantment, planeswalker, land
@@ -9,20 +9,21 @@ angular.module('deckBuilder').
             this.cardCount = 0;
             this.cmc = [0,0,0,0,0,0,0,0];
             $scope.form = {};
-            this.user = [];
+            this.cards = []; // Name of cards in deck
             $scope.user = JSON.parse(sessionStorage.user);
             var that = this;
 
             $scope.createDeck = function() {
+                $scope.form.user = $scope.user;
+                $scope.form.cards = that.cards;
                 console.log($scope.form);
-                console.log(that.cardStats);
-                // $http.post('/deckbuilder', $scope.form, that.cardStats)
-                //     .success(function (data) {
-                //         console.log(data);
-                //     })
-                //     .error(function( data) {
-                //         console.log(data);
-                //     });
+                $http.post('/deckbuilder', $scope.form, that.cards, $scope.user)
+                    .success(function (data) {
+                        console.log(data);
+                    })
+                    .error(function( data) {
+                        console.log(data);
+                    });
             };
 
             // Adds cards for statistics and display purposes
@@ -36,6 +37,8 @@ angular.module('deckBuilder').
 
                     // Obtain last card (most recent) from response and push into card collection
                     that.cardStats.push(data);
+                    that.cards.push(data.name);
+                    console.log(that.cards);
                     // Keep track of cmc and push in appropriate array slot
                     if (data.cmc) {
                         for (var j = 0; j < 8; j++) {

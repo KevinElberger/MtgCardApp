@@ -2,13 +2,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// To Be Continued, Deck for each User.
+// Base Deck Schema
 var DeckSchema = new Schema({
-    _owner: {type: Schema.ObjectId, ref: 'User'},
+    owner: String,
     name: String,
     format: String,
     description: String,
-    cardList: String
+    cardList: [String]
 });
 
 var DeckModel = mongoose.model('decks', DeckSchema);
@@ -16,10 +16,11 @@ exports.create = function (req, res) {
     var deck;
 
     deck = new DeckModel({
+        owner: req.body.user,
         name: req.body.name,
         format: req.body.format,
         description: req.body.description,
-        // cardList. req.
+        cardList: req.body.cards
     });
     deck.save(function(err) {
         if (!err) {
@@ -29,4 +30,8 @@ exports.create = function (req, res) {
         }
     });
     return res.send(deck);
+};
+
+exports.findDecks = function(req, res) {
+    
 };

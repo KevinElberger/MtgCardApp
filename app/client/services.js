@@ -4,7 +4,6 @@ angular.module('myApp').factory('AuthService',
 
     // create user variable
     var user = null;
-    // var userInfo = {};
 
     // return available functions for use in the controllers
     return ({
@@ -12,8 +11,7 @@ angular.module('myApp').factory('AuthService',
       getUserStatus: getUserStatus,
       login: login,
       logout: logout,
-      register: register,
-      // userInfo: userInfo
+      register: register
     });
 
     function isLoggedIn() {
