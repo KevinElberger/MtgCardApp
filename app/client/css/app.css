@@ -254,12 +254,11 @@ img {
     margin-bottom: 2em;
 }
 
-.card {
+.deck-title {
     width: 30%;
-    border-radius: 8px;
-    color: #e6e6e6;
+    font-weight: 200;
+    border-radius: 4px;
     text-align: center;
-    background: #303b43;
     margin: 0 auto;
 }
 
@@ -355,19 +354,35 @@ img {
     margin-bottom: 20px;
 }
 
-.profileRow {
+.stylish-panel {
+    padding: 20px;
+    text-align: center;
+}
+
+.stylish-panel > div > div{
+    background: #f7f7f7;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: .5s;
+}
+
+.stylish-panel > div:hover > div{
+    border: 1px solid rgb(200, 200, 200);
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px 2px;
+    background: rgba(48, 59, 67, 1);
+    transition: 0.5s;
+}
+
+.stylish-panel > div > div > img {
+    border-radius: 40%;
 }
 
 .inlineLeft {
     float: left;
     padding-left: 10px;
     display: inline;
-}
-
-.deckImg {
-    margin: 0 auto;
-    display: block;
-    border-radius: 12px;
 }
 
 .imgBorder {
@@ -378,4 +393,14 @@ img {
 .inline {
     display: inline-block;
     width: 100%;
+}
+
+.deck-content {
+    background: #ffffff;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.deck-container {
+    margin: 5px;
 }

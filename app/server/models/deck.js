@@ -9,7 +9,8 @@ var DeckSchema = new Schema({
     format: String,
     description: String,
     cardList: [String],
-    colors: [String]
+    colors: [String],
+    img: String
 });
 
 var DeckModel = mongoose.model('decks', DeckSchema);
@@ -22,7 +23,8 @@ exports.create = function (req, res) {
         format: req.body.format,
         description: req.body.description,
         cardList: [req.body.cards],
-        colors: req.body.colors
+        colors: req.body.colors,
+        img: req.body.img
     });
     deck.save(function(err) {
         if (!err) {

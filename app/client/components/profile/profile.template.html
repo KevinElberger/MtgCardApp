@@ -19,24 +19,15 @@
         <h1 class="titleText title text-center">Your Profile</h1><hr/>
     </div>
 </div>
-<div class="container">
-    <div class="col-lg-12">
-        <div class="row profileRow">
-            <h3 class="text-center">Decks</h3>
-            <div class="card-deck-wrapper">
-                <div class="card-deck">
-                    <div ng-repeat="deck in $ctrl.decks">
-                        <div class="card">
-                            <!--<img class="card-img-top" src="{{deck.cardImg}}" alt="Card img cap">-->
-                            <div class="card-block">
-                                <h4 class="card-title">{{deck.name}}</h4>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item blackText">Format: {{deck.format}}</li>
-                                <li class="list-group-item blackText">Colors: {{deck.colors}}</li>
-                            </ul>
-                        </div>
-                    </div>
+<div class="container deck-content">
+    <div class="container">
+        <div class="stylish-panel">
+            <div class="col-md-4"  ng-repeat="deck in $ctrl.decks">
+                <div class="deck-container">
+                    <img class="deckImg" src="./img/EMN.png" />
+                    <h3 class="deck-title">{{deck.name}}</h3><hr />
+                    <p>{{deck.format}}</p>
+                    <p>{{deck.colors}}</p>
                 </div>
             </div>
         </div>

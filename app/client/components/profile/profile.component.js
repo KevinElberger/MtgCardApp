@@ -15,5 +15,6 @@ angular.module('profile')
                 .error(function (data) {
                     console.log(data);
                 });
+        
         }
     });

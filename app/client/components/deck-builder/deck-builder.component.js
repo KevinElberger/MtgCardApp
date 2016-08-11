@@ -8,6 +8,7 @@ angular.module('deckBuilder').
             this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0}, {color: "Blue", count: 0}, {color: "Red", count: 0}, {color: "Green", count: 0}];
             this.cardCount = 0;
             this.cmc = [0,0,0,0,0,0,0,0];
+            this.img = "";
             $scope.form = {};
             this.cards = []; // Name of cards in deck
             this.deckColors = [];
@@ -21,6 +22,8 @@ angular.module('deckBuilder').
                         that.deckColors.push(that.cardColors[i].color);
                     }
                 }
+                that.img = that.cardStats[0].imageUrl;
+                $scope.form.img = that.img;
                 $scope.form.user = $scope.user;
                 $scope.form.cards = that.cards;
                 $scope.form.colors = that.deckColors;
@@ -46,7 +49,6 @@ angular.module('deckBuilder').
                     // Obtain last card (most recent) from response and push into card collection
                     that.cardStats.push(data);
                     that.cards.push(data.name);
-
                     // Keep track of cmc and push in appropriate array slot
                     if (data.cmc) {
                         for (var j = 0; j < 8; j++) {
