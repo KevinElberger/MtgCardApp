@@ -28,10 +28,14 @@ myApp.config(function ($routeProvider) {
       template: '<deck-builder></deck-builder>',
       access: {restricted: true}
     })
+    .when('/profile/:name', {
+      templateUrl: 'partials/landing.html',
+      access: {restricted: false}
+    })
     .when('/profile', {
       template: '<profile></profile>',
       access: {restricted: true}
-      })
+    })
     .otherwise({
       redirectTo: '/'
     });

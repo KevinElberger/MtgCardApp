@@ -103,6 +103,7 @@ angular.module('myApp').factory('AuthService',
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){
+            sessionStorage.user = JSON.stringify(username);
             deferred.resolve();
           } else {
             deferred.reject();

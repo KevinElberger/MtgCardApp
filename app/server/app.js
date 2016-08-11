@@ -19,8 +19,6 @@ var Deck = require('./models/deck.js');
 
 // create instance of express
 var app = express();
-
-// require routes
 var routes = require('./routes/api.js');
 
 // define middleware
@@ -46,7 +44,7 @@ passport.deserializeUser(User.deserializeUser());
 // routes
 app.use('/user/', routes);
 app.post('/deckbuilder', Deck.create);
-app.get('/profile', Deck.find);
+app.get('/profile/:name', Deck.find);
 
 // error handlers
 app.use(function(req, res, next) {

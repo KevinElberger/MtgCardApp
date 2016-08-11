@@ -8,7 +8,8 @@ var DeckSchema = new Schema({
     name: String,
     format: String,
     description: String,
-    cardList: [String]
+    cardList: [String],
+    colors: [String]
 });
 
 var DeckModel = mongoose.model('decks', DeckSchema);
@@ -20,7 +21,8 @@ exports.create = function (req, res) {
         name: req.body.name,
         format: req.body.format,
         description: req.body.description,
-        cardList: [req.body.cards]
+        cardList: [req.body.cards],
+        colors: req.body.colors
     });
     deck.save(function(err) {
         if (!err) {
@@ -33,7 +35,7 @@ exports.create = function (req, res) {
 };
 
 exports.find = function(req, res) {
-    return DeckModel.find({'owner': JSON.parse(sessionStorage.user)}, function(err, decks) {
+    return DeckModel.find({'owner': req.params.name}, function(err, decks) {
         if (!err) {
             res.json(decks);
         } else {

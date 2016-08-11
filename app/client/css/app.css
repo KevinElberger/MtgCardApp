@@ -246,12 +246,25 @@ img {
     z-index: 9999;
 }
 
-.card {
+.cardBody {
     position: relative;
     padding-bottom: 1em;
     padding-top: 1em;
     margin-left: -150px;
     margin-bottom: 2em;
+}
+
+.card {
+    width: 30%;
+    border-radius: 8px;
+    color: #e6e6e6;
+    text-align: center;
+    background: #303b43;
+    margin: 0 auto;
+}
+
+.blackText {
+    color: #1c1c1c;
 }
 
 .loginWrapper {
@@ -343,9 +356,6 @@ img {
 }
 
 .profileRow {
-    background: #303b43;
-    color: #f5f7f9;
-    margin-bottom: 20px;
 }
 
 .inlineLeft {

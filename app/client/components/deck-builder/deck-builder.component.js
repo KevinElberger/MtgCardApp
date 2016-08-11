@@ -10,13 +10,21 @@ angular.module('deckBuilder').
             this.cmc = [0,0,0,0,0,0,0,0];
             $scope.form = {};
             this.cards = []; // Name of cards in deck
+            this.deckColors = [];
             $scope.user = JSON.parse(sessionStorage.user);
             var that = this;
 
             $scope.createDeck = function() {
+                // Record deck colors for deck model
+                for (var i = 0; i < that.cardColors.length; i++) {
+                    if (that.cardColors[i].count > 0) {
+                        that.deckColors.push(that.cardColors[i].color);
+                    }
+                }
                 $scope.form.user = $scope.user;
                 $scope.form.cards = that.cards;
-                console.log($scope.form);
+                $scope.form.colors = that.deckColors;
+                // console.log($scope.form);
                 $http.post('/deckbuilder', $scope.form)
                     .success(function (data) {
                         console.log(data);
@@ -38,7 +46,7 @@ angular.module('deckBuilder').
                     // Obtain last card (most recent) from response and push into card collection
                     that.cardStats.push(data);
                     that.cards.push(data.name);
-                    console.log(that.cards);
+
                     // Keep track of cmc and push in appropriate array slot
                     if (data.cmc) {
                         for (var j = 0; j < 8; j++) {
