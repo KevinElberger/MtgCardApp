@@ -240,6 +240,7 @@ img {
 
 .deckContainer {
     margin-left: 1em;
+    margin-right: 1em;
 }
 
 .cardImg:hover {
@@ -402,9 +403,9 @@ img {
 }
 
 .deck-content {
-    background: #ffffff;
-    padding: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    /*background: #ffffff;*/
+    /*padding: 6px;*/
+    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
 }
 
 .deck-container {
@@ -453,17 +454,101 @@ a.github:hover {
     background-color: rgb(51, 51, 51) !important;
 }
 
+/* Edit buttons */
+
+.edit a {
+    position: relative;
+    display: inline-block;
+    min-width: 40px;
+    padding: 10px 0px;
+    margin: 0px 5px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 40px;
+}
+
+a.edit-icon {
+
+    text-decoration: none !important;
+    box-shadow: 0 0 1px rgb(51, 51, 51);
+    box-shadow: 0 0 1px rgba(51, 51, 51, 0.7);
+}
+
+a.delete:hover {
+    color: #c9302c !important;
+}
+
+a.edit:hover {
+    color: #4cbe83 !important;
+}
+
+.edit-wrapper {
+   text-align: center;
+}
+
+.delete, .edit {
+    margin: 0 auto;
+}
+
+
 /* Cards */
 
 .card {
-    width: 33%;
+    position: relative;
+    margin: 0.5rem 0.5rem 1rem 0.5rem;
+    background-color: #fff;
+    transition: box-shadow .25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-.card-reveal {
+.card .card-title.activator {
+    cursor: pointer;
+}
+
+.card .card-title {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.card .card-reveal {
     background-color: #303b43 !important;
     color: #e6e6e6;
+    padding: 20px;
+    position: absolute;
+    width: 100%;
+    overflow-y: auto;
+    top: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none;
+}
+
+.col-md-3 {
+
+}
+
+.cardContainer {
+    background: #e6e6e6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+i {
+    line-height: inherit;
+    font-style: italic;
+    cursor: pointer;
+}
+
+i.right {
+    margin-left: 15px;
+}
+
+.right {
+    float: right !important;
 }
 
 .reveal-text {
     color: #e6e6e6;
+    cursor: pointer;
 }

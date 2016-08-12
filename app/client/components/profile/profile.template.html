@@ -25,8 +25,8 @@
     </div><br/>
 </div>
 <div class="container deck-content">
-    <div class="container">
-        <div class="col-md-4 card"  ng-repeat="deck in $ctrl.decks">
+    <div class="container cardContainer">
+        <div class="col-md-3 card"  ng-repeat="deck in $ctrl.decks">
             <h2 class="card-title activator text-center grey-text text-darken-4">
                 {{deck.name}}</h2>
             <hr/>
@@ -35,7 +35,11 @@
                 <p class="text-center"><img ng-repeat="color in deck.colors" class="colorIcons" src="./img/{{color}}Icon.png" /></p>
             <div class="card-reveal">
                 <span class="card-title reveal-text">Description<i class="material-icons right">close</i></span>
-                <p class="text-center">{{deck.description}}<i class="icon-remove"></i></p>
+                <p>{{deck.description}}<i class="icon-remove"></i></p>
+                <div class="social edit-wrapper">
+                    <a href="" class="edit-icon delete animate"><i class="fa fa-trash fa-lg"></i></a>
+                    <a href="" class="edit-icon edit animate"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                </div>
             </div>
         </div>
     </div>
