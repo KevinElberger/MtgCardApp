@@ -16,19 +16,26 @@
 </div>
 <div class="profileHeader">
     <div class="header-content">
-        <h1 class="titleText title text-center">Your Profile</h1><hr/>
+        <h1 class="title text-center"><strong>Your Profile</strong></h1><hr/>
     </div>
+</div>
+<div class="container">
+    <div>
+        <p>Name: {{$ctrl.user}}</p>
+    </div><br/>
 </div>
 <div class="container deck-content">
     <div class="container">
-        <div class="stylish-panel">
-            <div class="col-md-4"  ng-repeat="deck in $ctrl.decks">
-                <div class="deck-container">
-                    <img class="deckImg" src="./img/EMN.png" />
-                    <h3 class="deck-title">{{deck.name}}</h3><hr />
-                    <p>{{deck.format}}</p>
-                    <p>{{deck.colors}}</p>
-                </div>
+        <div class="col-md-4 card"  ng-repeat="deck in $ctrl.decks">
+            <h2 class="card-title activator text-center grey-text text-darken-4">
+                {{deck.name}}</h2>
+            <hr/>
+            <i class="activator icon-ellipsis-vertical"></i>
+                <p class="text-center">{{deck.format}}</p>
+                <p class="text-center"><img ng-repeat="color in deck.colors" class="colorIcons" src="./img/{{color}}Icon.png" /></p>
+            <div class="card-reveal">
+                <span class="card-title reveal-text">Description<i class="material-icons right">close</i></span>
+                <p class="text-center">{{deck.description}}<i class="icon-remove"></i></p>
             </div>
         </div>
     </div>

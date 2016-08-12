@@ -278,6 +278,12 @@ img {
     margin: 0 auto;
 }
 
+.colorIcons {
+    zoom: 100%;
+    display: inline;
+    margin: 0 auto;
+}
+
 .titleText {
     font-weight: 200;
     font-size: 30px;
@@ -397,10 +403,67 @@ img {
 
 .deck-content {
     background: #ffffff;
-    padding: 10px;
+    padding: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .deck-container {
-    margin: 5px;
+    margin: 4px;
+}
+
+/*
+*   Animation
+*
+*/
+
+.animate {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.social a {
+    position: relative;
+    display: inline-block;
+    min-width: 40px;
+    padding: 10px 0px;
+    margin: 0px 5px;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgb(215, 215, 215);
+    border-radius: 40px;
+}
+
+a.social-icon {
+    text-decoration: none !important;
+    box-shadow: 0 0 1px rgb(51, 51, 51);
+    box-shadow: 0 0 1px rgba(51, 51, 51, 0.7);
+}
+
+a.social-icon:hover {
+    color: rgb(255, 255, 255) !important;
+}
+
+a.github {
+    color: rgb(51, 51, 51) !important;
+}
+a.github:hover {
+    background-color: rgb(51, 51, 51) !important;
+}
+
+/* Cards */
+
+.card {
+    width: 33%;
+}
+
+.card-reveal {
+    background-color: #303b43 !important;
+    color: #e6e6e6;
+}
+
+.reveal-text {
+    color: #e6e6e6;
 }
