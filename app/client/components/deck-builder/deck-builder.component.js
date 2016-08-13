@@ -93,6 +93,62 @@ angular.module('deckBuilder').
                 });
             };
 
+            // Removes a card from the deck & re-computes statistics
+            $scope.removeCard = function(index) {
+                var card = that.cardStats[index];
+                that.cardCount--;
+                switch(card.types[0]) {
+                case "Creature":
+                    that.cardTypes[0]--;
+                    break;
+                case "Sorcery":
+                    that.cardTypes[1]--;
+                    break;
+                case "Instant":
+                    that.cardTypes[2]--;
+                    break;
+                case "Artifact":
+                    that.cardTypes[3]--;
+                    break;
+                case "Enchantment":
+                    that.cardTypes[4]--;
+                    break;
+                case "Planeswalker":
+                    that.cardTypes[5]--;
+                    break;
+                default:
+                    // Lands
+                    that.cardTypes[6]--;
+                    break;
+                }
+
+                if (card.colors) {
+                    for (var i = 0; i < that.cardColors.length; i++) {
+                        for (var x = 0; x < that.cardColors.length; x++) {
+                            if (card.colors[x] == that.cardColors[i].color) {
+                                that.cardColors[i].count--;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (card.cmc) {
+                    for (var j = 0; j < 8; j++) {
+                        if (j == card.cmc) {
+                            that.cmc[j]--;
+                        }
+                    }
+                    if (card.cmc > 7) {
+                        that.cmc[7]--;
+                    }
+                }
+
+                that.cardStats.splice(index,1);
+                that.cards.splice(index,1);
+                that.computeStats();
+            };
+
             this.recordColor = function(card) {
                 if (card.colors) {
                     for (var i = 0; i < that.cardColors.length; i++) {

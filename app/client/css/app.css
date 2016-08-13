@@ -231,7 +231,6 @@ img {
 
 .deck {
     height: 850px;
-    overflow: scroll;
     padding-left: 5%;
     padding-right: 5%;
     background-color: #F2F2F2;
