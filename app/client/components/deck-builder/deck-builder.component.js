@@ -1,7 +1,7 @@
 angular.module('deckBuilder').
     component('deckBuilder', {
         templateUrl: 'components/deck-builder/deck-builder.template.html',
-        controller: function DeckBuilderController($scope, mtgAPIservice, $http) {
+        controller: function DeckBuilderController($scope, mtgAPIservice, $http, $route, $routeParams) {
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = []; // Collection of cards
             this.cardTypes = [0,0,0,0,0,0,0]; // Creature, sorcery, instant, artifact, enchantment, planeswalker, land
@@ -14,7 +14,20 @@ angular.module('deckBuilder').
             this.deckColors = [];
             $scope.user = JSON.parse(sessionStorage.user);
             var that = this;
+            var paramValue = $route.current.$$route.edit;
+            var id = $routeParams.id;
 
+            // Check if in edit mode, if so, make request for deck ID
+            if (paramValue) {
+                $http.get('/deckbuilder/edit/' + id)
+                    .success(function(data) {
+                        that.cardStats.push(data);
+                        console.log(that.cardStats);
+                    })
+                    .error(function(data) {
+                        console.log(data);
+                    })
+            }
             $scope.createDeck = function() {
                 // Record deck colors for deck model
                 for (var i = 0; i < that.cardColors.length; i++) {

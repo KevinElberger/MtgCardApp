@@ -49,6 +49,16 @@ exports.find = function(req, res) {
     });
 };
 
+exports.edit = function(req, res) {
+    return DeckModel.findById(req.params.id, function(err, deck) {
+        if(!err) {
+            res.json(deck);
+        } else {
+            console.log(err);
+        }
+    });
+};
+
 // Delete selected deck created by user.
 exports.delete = function(req, res) {
     return DeckModel.findById(req.params.id, function(err, deck) {

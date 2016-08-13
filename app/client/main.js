@@ -3,8 +3,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'deckBuilder', 'cardSearch', 'pr
 myApp.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/landing.html',
-      access: {restricted: false}
+      templateUrl: 'partials/landing.html'
     })
     .when('/login', {
       templateUrl: 'partials/login.html',
@@ -35,6 +34,11 @@ myApp.config(function ($routeProvider) {
     .when('/profile', {
       template: '<profile></profile>',
       access: {restricted: true}
+    })
+    .when('/deckbuilder/edit/id=:id', {
+      template: '<deck-builder></deck-builder>',
+      access: {restricted: true},
+      edit: 'true'
     })
     .otherwise({
       redirectTo: '/'

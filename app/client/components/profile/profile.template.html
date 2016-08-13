@@ -32,13 +32,13 @@
             <hr/>
             <i class="activator icon-ellipsis-vertical"></i>
                 <p class="text-center">{{deck.format}}</p>
-                <p class="text-center"><img ng-repeat="color in deck.colors track by $index" class="colorIcons" src="./img/{{color}}Icon.png" /></p>
+                <p class="text-center"><img ng-repeat="color in deck.colors track by $index" class="colorIcons" ng-src="./img/{{color}}Icon.png" /></p>
             <div class="card-reveal">
                 <span class="card-title reveal-text">Description<i class="material-icons right">close</i></span>
                 <p>{{deck.description}}<i class="icon-remove"></i></p>
                 <div class="social edit-wrapper">
                     <a href="" ng-click="delete(deck._id, $index)" class="edit-icon delete deleteButton animate"><i class="fa fa-trash fa-lg"></i></a>
-                    <a href="" class="edit-icon edit animate"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                    <a href="#/deckbuilder/edit/id={{deck._id}}" class="edit-icon edit animate"><i class="fa fa-pencil-square-o fa-lg"></i></a>
                 </div>
             </div>
         </div>
