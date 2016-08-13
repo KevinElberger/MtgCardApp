@@ -31,29 +31,11 @@
                 <div class="input-group">
                     <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" />
                     <span class="input-group-btn">
-                        <button ng-click="$ctrl.addCard(cardName, quantity, board)" id="addCard" class="btn btn-success">Add Card</button>
+                        <button ng-click="$ctrl.addCard(cardName, board)" id="addCard" class="btn btn-success">Add Card</button>
                     </span>
                 </div>
             </fieldset>
         <form class="form deckbuilder" method="post">
-            <fieldset class="form-group">
-                <br/>
-                <div class="radioWrapper">
-                    <div class="radio">
-                        <label class="radio-inline">
-                            <input type="radio" name="board" id="mainboard" value="mainboard" ng-model="form.board" ng-value="true" checked>
-                            Mainboard
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label class="radio-inline">
-                            <input type="radio" name="board" id="sideboard" value="Sideboard" ng-model="form.board" ng-value="false">
-                            Sideboard
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-
             <fieldset class="form-group">
                 <label>DECK NAME</label>
                 <input type="text" class="form-control" placeholder="Deck Name" ng-model="form.name"/>
@@ -91,12 +73,16 @@
             <button type="submit" id="saveDeck" class="btn btn-success" ng-click="createDeck()">Save Deck</button>
         </form>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6 deckContainerWrapper">
         <div class="deckContainer">
             <div id="deck" class="deck">
-                <img class="cardBody cardImg" ng-repeat="card in $ctrl.cardStats track by $index" ng-src="{{card.imageUrl}}" ng-click="removeCard($index)" /><br />
+                <img class="cardBody cardImg" ng-repeat="card in $ctrl.cardStats track by $index" ng-src="{{card.imageUrl}}"
+                     data-drag="true" ng-right-click="removeCard($index)" jqyoui-draggable/><br />
             </div>
         </div>
+    </div>
+    <div class="col-md-2 sideboard" ng-drop="true">
+            <h5 class="text-center">Sideboard</h5>
     </div>
     <div class="col-md-2">
         <div class="statisticsWrapper hidden" id="statisticsWrapper">
