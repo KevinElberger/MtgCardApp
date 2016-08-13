@@ -24,7 +24,7 @@ exports.create = function (req, res) {
         name: req.body.name,
         format: req.body.format,
         description: req.body.description,
-        cardList: [req.body.cards],
+        cardList: req.body.cards,
         colors: req.body.colors,
         img: req.body.img
     });
@@ -57,6 +57,24 @@ exports.edit = function(req, res) {
             console.log(err);
         }
     });
+};
+
+exports.update = function(req, res) {
+    return DeckModel.findById(req.params.id, function(err, deck) {
+        deck.name = req.body.name;
+        deck.format = req.body.format;
+        deck.description = req.body.description;
+        deck.cardList = req.body.cards;
+        deck.colors = req.body.colors;
+        deck.img = req.body.img;
+        deck.save(function (err) {
+            if(!err) {
+                console.log("updated");
+            } else {
+                console.log(err);
+            }
+        })
+    })
 };
 
 // Delete selected deck created by user.

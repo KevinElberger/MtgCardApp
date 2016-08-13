@@ -18,36 +18,59 @@ angular.module('deckBuilder').
             var id = $routeParams.id;
 
             // Check if in edit mode, if so, make request for deck ID
-            if (paramValue) {
+            if (paramValue !== undefined) {
                 $http.get('/deckbuilder/edit/' + id)
                     .success(function(data) {
-                        that.cardStats.push(data);
-                        console.log(that.cardStats);
+                        for(var i = 0; i < data.cardList.length; i++){
+                            that.addCard(data.cardList[i]);
+                        }
                     })
                     .error(function(data) {
                         console.log(data);
                     })
             }
+
             $scope.createDeck = function() {
-                // Record deck colors for deck model
-                for (var i = 0; i < that.cardColors.length; i++) {
-                    if (that.cardColors[i].count > 0) {
-                        that.deckColors.push(that.cardColors[i].color);
+                // If this is a brand-new deck
+                if (paramValue == undefined) {
+                    // Record deck colors for deck model
+                    for (var i = 0; i < that.cardColors.length; i++) {
+                        if (that.cardColors[i].count > 0) {
+                            that.deckColors.push(that.cardColors[i].color);
+                        }
                     }
+                    that.img = that.cardStats[0].imageUrl;
+                    $scope.form.img = that.img;
+                    $scope.form.user = $scope.user;
+                    $scope.form.cards = that.cards;
+                    $scope.form.colors = that.deckColors;
+                    $http.post('/deckbuilder', $scope.form)
+                        .success(function (data) {
+                            console.log(data);
+                        })
+                        .error(function (data) {
+                            console.log(data);
+                        });
+                } else {
+                    for (var z = 0; z < that.cardColors.length; z++) {
+                        if (that.cardColors[z].count > 0) {
+                            that.deckColors.push(that.cardColors[z].color);
+                        }
+                    }
+                    that.img = that.cardStats[0].imageUrl;
+                    $scope.form.img = that.img;
+                    $scope.form.user = $scope.user;
+                    $scope.form.cards = that.cards;
+                    $scope.form.colors = that.deckColors;
+                    console.log($scope.form);
+                    $http.put('/deckbuilder/edit/' + id, $scope.form)
+                        .success(function(data) {
+                            console.log(data);
+                        })
+                        .error(function(data) {
+                            console.log(data);
+                        })
                 }
-                that.img = that.cardStats[0].imageUrl;
-                $scope.form.img = that.img;
-                $scope.form.user = $scope.user;
-                $scope.form.cards = that.cards;
-                $scope.form.colors = that.deckColors;
-                // console.log($scope.form);
-                $http.post('/deckbuilder', $scope.form)
-                    .success(function (data) {
-                        console.log(data);
-                    })
-                    .error(function( data) {
-                        console.log(data);
-                    });
             };
 
             // Adds cards for statistics and display purposes
@@ -103,6 +126,7 @@ angular.module('deckBuilder').
                     deck.classList.remove('hidden');
                     // Update statistics graphs
                     that.computeStats();
+
                 });
             };
 

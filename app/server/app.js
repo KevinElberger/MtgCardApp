@@ -47,6 +47,7 @@ app.post('/deckbuilder', Deck.create);
 app.get('/profile/:name', Deck.find);
 app.delete('/profile/:id', Deck.delete);
 app.get('/deckbuilder/edit/:id', Deck.edit);
+app.put('/deckbuilder/edit/:id', Deck.update);
 
 // error handlers
 app.use(function(req, res, next) {
