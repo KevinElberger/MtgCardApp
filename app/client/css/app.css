@@ -475,6 +475,10 @@ a.edit-icon {
     box-shadow: 0 0 1px rgba(51, 51, 51, 0.7);
 }
 
+a.delete, a.edit {
+    color: #64727c;
+}
+
 a.delete:hover {
     color: #c9302c !important;
 }
@@ -520,13 +524,21 @@ a.edit:hover {
     width: 100%;
     overflow-y: auto;
     top: 100%;
+    left: 0;
     height: 100%;
     z-index: 3;
     display: none;
 }
 
-.col-md-3 {
+.card .card-reveal::-webkit-scrollbar {
+    display: none;
+}
 
+.col-md-3 {
+    margin: 0.5rem;
+    width: 24%;
+}
+.container-fluid {
 }
 
 .cardContainer {

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'deckBuilder', 'cardSearch', 'profile']);
+var myApp = angular.module('myApp', ['ngRoute', 'deckBuilder', 'cardSearch', 'profile', 'ngAnimate']);
 
 myApp.config(function ($routeProvider) {
   $routeProvider

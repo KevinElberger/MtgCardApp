@@ -14,6 +14,8 @@ var DeckSchema = new Schema({
 });
 
 var DeckModel = mongoose.model('decks', DeckSchema);
+
+// Create deck model for user.
 exports.create = function (req, res) {
     var deck;
 
@@ -36,6 +38,7 @@ exports.create = function (req, res) {
     return res.send(deck);
 };
 
+// Find all decks created by user.
 exports.find = function(req, res) {
     return DeckModel.find({'owner': req.params.name}, function(err, decks) {
         if (!err) {
@@ -43,5 +46,19 @@ exports.find = function(req, res) {
         } else {
             console.log(err);
         }
+    });
+};
+
+// Delete selected deck created by user.
+exports.delete = function(req, res) {
+    return DeckModel.findById(req.params.id, function(err, deck) {
+        return deck.remove(function(err) {
+            if (!err) {
+                console.log("removed");
+                return res.send('');
+            } else {
+                console.log(err);
+            }
+        });
     });
 };
