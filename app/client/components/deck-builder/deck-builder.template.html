@@ -94,7 +94,7 @@
     <div class="col-md-8">
         <div class="deckContainer">
             <div id="deck" class="deck">
-                <img class="cardBody cardImg" ng-repeat="card in $ctrl.cardStats" ng-src="{{card.imageUrl}}" ng-click="removeCard($index)" /><br />
+                <img class="cardBody cardImg" ng-repeat="card in $ctrl.cardStats track by $index" ng-src="{{card.imageUrl}}" ng-click="removeCard($index)" /><br />
             </div>
         </div>
     </div>

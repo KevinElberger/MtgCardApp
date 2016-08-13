@@ -76,58 +76,72 @@ angular.module('deckBuilder').
             // Adds cards for statistics and display purposes
             // @param card (String) - card name
             this.addCard = function(card) {
-                // Get card from API
-                mtgAPIservice.getCards(card).then(function (response) {
-                    var data = response.data.cards[response.data.cards.length - 1];
-                    var cardType = response.data.cards[response.data.cards.length - 1].types[0];
-                    that.cardCount++;
+                if (!that.checkCard(card)) {
+                    // Get card from API
+                    mtgAPIservice.getCards(card).then(function (response) {
+                        var data = response.data.cards[response.data.cards.length - 1];
+                        var cardType = response.data.cards[response.data.cards.length - 1].types[0];
+                        that.cardCount++;
 
-                    // Obtain last card (most recent) from response and push into card collection
-                    that.cardStats.push(data);
-                    that.cards.push(data.name);
-                    // Keep track of cmc and push in appropriate array slot
-                    if (data.cmc) {
-                        for (var j = 0; j < 8; j++) {
-                            if (j == data.cmc) {
-                                that.cmc[j] ++;
+                        // Obtain last card (most recent) from response and push into card collection
+                        that.cardStats.push(data);
+                        that.cards.push(data.name);
+                        // Keep track of cmc and push in appropriate array slot
+                        if (data.cmc) {
+                            for (var j = 0; j < 8; j++) {
+                                if (j == data.cmc) {
+                                    that.cmc[j]++;
+                                }
+                            }
+                            if (data.cmc > 7) {
+                                that.cmc[7]++;
                             }
                         }
-                        if (data.cmc > 7) {
-                            that.cmc[7] ++;
+                        // Record color for polar chart
+                        that.recordColor(data);
+                        switch (cardType) {
+                            case "Creature":
+                                that.cardTypes[0]++;
+                                break;
+                            case "Sorcery":
+                                that.cardTypes[1]++;
+                                break;
+                            case "Instant":
+                                that.cardTypes[2]++;
+                                break;
+                            case "Artifact":
+                                that.cardTypes[3]++;
+                                break;
+                            case "Enchantment":
+                                that.cardTypes[4]++;
+                                break;
+                            case "Planeswalker":
+                                that.cardTypes[5]++;
+                                break;
+                            default:
+                                // Lands
+                                that.cardTypes[6]++;
+                                break;
                         }
-                    }
-                    // Record color for polar chart
-                    that.recordColor(data);
-                    switch (cardType) {
-                    case "Creature":
-                        that.cardTypes[0]++;
-                        break;
-                    case "Sorcery":
-                        that.cardTypes[1]++;
-                        break;
-                    case "Instant":
-                        that.cardTypes[2]++;
-                        break;
-                    case "Artifact":
-                        that.cardTypes[3]++;
-                        break;
-                    case "Enchantment":
-                        that.cardTypes[4]++;
-                        break;
-                    case "Planeswalker":
-                        that.cardTypes[5]++;
-                        break;
-                    default:
-                        // Lands
-                        that.cardTypes[6]++;
-                        break;
-                    }
-                    var deck = document.getElementById('deck');
-                    deck.classList.remove('hidden');
-                    // Update statistics graphs
-                    that.computeStats();
+                        var deck = document.getElementById('deck');
+                        deck.classList.remove('hidden');
+                        // Update statistics graphs
+                        that.computeStats();
+                    });
+                }
+            };
 
-                });
+            this.checkCard = function(card) {
+                // Have the card already, find it in the array and store a copy in the array
+                for (var a = 0; a < that.cardStats.length; a++) {
+                    if (that.cardStats[a].name.toUpperCase() == card.toUpperCase()) {
+                        var cardMatch = that.cardStats[a];
+                        that.cardStats.push(cardMatch);
+                        return true;
+                    }
+                }
+                // Don't have the card, return false
+                return false;
             };
 
             // Removes a card from the deck & re-computes statistics
