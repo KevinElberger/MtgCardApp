@@ -126,24 +126,8 @@ header {
     text-align: center;
 }
 
-.deck {
-    min-height: 10em;
-    background-color: #F7F7F7;
-    border-top: 1px solid #F1F1F1;
-    border-bottom: 1px solid #F1F1F1;
-}
-
 .green {
     background: #4cbe83;
-}
-
-.cardImg {
-    position: relative;
-    left: 3.2%;
-}
-
-.sideboardCardImg {
-    position: relative;
 }
 
 .form-control:focus {
@@ -234,12 +218,15 @@ img {
 }
 
 .deck {
+    min-height: 10em;
     height: 850px;
-    padding-left: 5%;
-    padding-right: 0;
+    padding-left: 10%;
+    padding-right: 5%;
     margin: 0 auto;
     background-color: #F2F2F2;
     border-radius: 0;
+    border-top: 1px solid #F1F1F1;
+    border-bottom: 1px solid #F1F1F1;
 }
 
 .sideboard {
@@ -259,6 +246,11 @@ img {
     padding-right: 0;
 }
 
+.cardImg {
+    position: relative;
+    left: 3.2%;
+}
+
 .cardImg:hover {
     z-index: 9999;
 }
@@ -271,9 +263,14 @@ img {
     margin-bottom: 2em;
 }
 
+.sideboard {
+    padding-left: 5%;
+}
+
 .sideboardCardBody {
-    position: absolute;
-    margin-top: 4px;
+    position: relative;
+    margin-left: -150px;
+    padding-bottom: 1em;
 }
 
 .deck-title {
@@ -423,14 +420,13 @@ img {
     width: 100%;
 }
 
-.deck-content {
-    /*background: #ffffff;*/
-    /*padding: 6px;*/
-    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
-}
-
 .deck-container {
     margin: 4px;
+}
+
+.tall-text {
+    font-weight: 300;
+    line-height: 1.1;
 }
 
 /*
@@ -563,6 +559,11 @@ a.edit:hover {
 }
 
 .cardContainer {
+    background: #e6e6e6;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.profile-container {
     background: #e6e6e6;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }

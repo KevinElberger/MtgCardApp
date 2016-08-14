@@ -1,7 +1,7 @@
 angular.module('deckBuilder').
     component('deckBuilder', {
         templateUrl: 'components/deck-builder/deck-builder.template.html',
-        controller: function DeckBuilderController($scope, mtgAPIservice, $http, $route, $routeParams) {
+        controller: function DeckBuilderController($scope, mtgAPIservice, $http, $route, $routeParams, $window) {
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = []; // Collection of cards for mainboard
             this.sideboard = []; // Collection of cards for sideboard
@@ -59,6 +59,8 @@ angular.module('deckBuilder').
                     $http.post('/deckbuilder', $scope.form)
                         .success(function (data) {
                             console.log(data);
+                            var url = "http://localhost:27017/#/profile";
+                            $window.location.href = url;
                         })
                         .error(function (data) {
                             console.log(data);
@@ -77,6 +79,8 @@ angular.module('deckBuilder').
                     $http.put('/deckbuilder/edit/' + id, $scope.form)
                         .success(function(data) {
                             console.log(data);
+                            var url = "http://localhost:27017/#/profile";
+                            $window.location.href = url;
                         })
                         .error(function(data) {
                             console.log(data);
@@ -158,7 +162,7 @@ angular.module('deckBuilder').
             };
 
             // Transfers card from sideboard to mainboard
-            this.addMainboard = function(card, index){
+            $scope.addMainboard = function(card, index){
                 that.sideboard.splice(index, 1);
                 that.addCard(card, false);
             };

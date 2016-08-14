@@ -20,12 +20,14 @@
     </div>
 </div>
 <div class="container">
-    <div>
-        <p>Name: {{user}}</p>
-    </div><br/>
-</div>
+    <div class="container-fluid profile-container">
+        <h4 class="tall-text">Name: {{user}}</h4>
+        <h4 class="tall-text">Decks: {{decks.length}}</h4>
+    </div>
+</div><br/>
 <div class="container deck-content">
     <div class="container-fluid cardContainer">
+        <h3 class="tall-text text-center">Decks</h3>
         <div class="col-md-3 card"  ng-repeat="deck in decks">
             <h2 class="card-title activator text-center grey-text text-darken-4">
                 {{deck.name}}</h2>

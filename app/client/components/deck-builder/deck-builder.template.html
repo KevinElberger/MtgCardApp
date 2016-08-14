@@ -71,6 +71,7 @@
     <div class="col-md-6 deckContainerWrapper">
         <div class="deckContainer">
             <div id="deck" class="deck">
+                <h5 class="text-center">Mainboard</h5>
                 <img class="cardBody cardImg" ng-repeat="card in $ctrl.cardStats track by $index" ng-src="{{card.imageUrl}}"
                      ng-right-click="removeCard($index, false)" ng-click="addSideboard(card, $index)" /><br />
             </div>
@@ -78,8 +79,8 @@
     </div>
     <div class="col-md-2 sideboard">
             <h5 class="text-center">Sideboard</h5>
-        <img class="sideboardCardBody sideboardCardImg" ng-repeat="card in $ctrl.sideboard track by $index" ng-src="{{card.imageUrl}}"
-             ng-right-click="removeCard($index, true)" ng-click="addMainboard(card, $index)" /><br />
+        <img class="sideboardCardBody" ng-repeat="card in $ctrl.sideboard track by $index" ng-src="{{card.imageUrl}}"
+             ng-right-click="removeCard($index, true)" ng-click="addMainboard(card.name, $index)" /><br />
     </div>
     <div class="col-md-2">
         <div class="statisticsWrapper hidden" id="statisticsWrapper">
