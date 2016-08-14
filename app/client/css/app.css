@@ -315,13 +315,69 @@ img {
 
 .page-header {
     background-image: url('../img/header2.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding-left: 0;
     padding-right: 0;
-    background-size: cover;
     width: 100%;
     height: 80%;
     position: relative;
 }
+
+/*
+*   Login page
+*/
+
+.login-header {
+    background-image: url('../img/login.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/*
+*   Register page
+*/
+.register-header {
+    background-image: url('../img/register.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.register-phrase {
+    font-weight: 100;
+    font-size: 36px;
+}
+
+.register-text {
+    color: #fff;
+}
+
+.register-label {
+    font-weight: 100;
+    float: left;
+}
+
+.register-url {
+    color: #2aabd2;
+}
+
+/* End Register page */
 
 .profileHeader {
     width: 100%;
@@ -344,6 +400,10 @@ img {
 
 .mainTitle, .small {
     color: #f5f7f9;
+}
+
+.small-text {
+    font-size: 10px;
 }
 
 .header-content {
@@ -376,7 +436,16 @@ img {
 .row2 {
     background: #303b43;
     color: #f5f7f9;
-    margin-bottom: 20px;
+}
+
+.row3 {
+
+}
+
+.row4 {
+    padding-top: 1em;
+    background: #222;
+    color: #f5f7f9;
 }
 
 .stylish-panel {
@@ -469,6 +538,13 @@ a.github {
 }
 a.github:hover {
     background-color: rgb(51, 51, 51) !important;
+}
+
+a.facebook {
+    color: rgb(59, 90, 154) !important;
+}
+a.facebook:hover {
+    background-color: rgb(59, 90, 154) !important;
 }
 
 /* Edit buttons */
