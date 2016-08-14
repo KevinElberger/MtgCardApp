@@ -10,7 +10,7 @@ var DeckSchema = new Schema({
     description: String,
     cardList: [String],
     colors: [String],
-    img: String
+    sideboard: [String]
 });
 
 var DeckModel = mongoose.model('decks', DeckSchema);
@@ -26,7 +26,7 @@ exports.create = function (req, res) {
         description: req.body.description,
         cardList: req.body.cards,
         colors: req.body.colors,
-        img: req.body.img
+        sideboard: req.body.sideboard
     });
     deck.save(function(err) {
         if (!err) {
@@ -49,6 +49,7 @@ exports.find = function(req, res) {
     });
 };
 
+// Edit deck selected via id.
 exports.edit = function(req, res) {
     return DeckModel.findById(req.params.id, function(err, deck) {
         if(!err) {
@@ -66,7 +67,7 @@ exports.update = function(req, res) {
         deck.description = req.body.description;
         deck.cardList = req.body.cards;
         deck.colors = req.body.colors;
-        deck.img = req.body.img;
+        deck.sideboard = req.body.sideboard;
         deck.save(function (err) {
             if(!err) {
                 console.log("updated");

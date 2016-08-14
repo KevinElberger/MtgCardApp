@@ -5,6 +5,7 @@ angular.module('deckBuilder').
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = []; // Collection of cards for mainboard
             this.sideboard = []; // Collection of cards for sideboard
+            this.sideboardnames = [];
             this.cardTypes = [0,0,0,0,0,0,0]; // Creature, sorcery, instant, artifact, enchantment, planeswalker, land
             this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0}, {color: "Blue", count: 0}, {color: "Red", count: 0}, {color: "Green", count: 0}];
             this.cardCount = 0;
@@ -23,7 +24,10 @@ angular.module('deckBuilder').
                 $http.get('/deckbuilder/edit/' + id)
                     .success(function(data) {
                         for(var i = 0; i < data.cardList.length; i++){
-                            that.addCard(data.cardList[i]);
+                            that.addCard(data.cardList[i], false);
+                        }
+                        for (var x = 0; x < data.sideboard.length; x++) {
+                            that.addCard(data.sideboard[x], true);
                         }
                     })
                     .error(function(data) {
@@ -31,7 +35,15 @@ angular.module('deckBuilder').
                     })
             }
 
+            // Take only names for sideboard for Deck model
+            $scope.generateSideboardNames = function() {
+                for (var a = 0; a < that.sideboard.length; a++) {
+                    that.sideboardnames.push(that.sideboard[a].name);
+                }
+            };
+
             $scope.createDeck = function() {
+                $scope.generateSideboardNames();
                 // If this is a brand-new deck
                 if (paramValue == undefined) {
                     // Record deck colors for deck model
@@ -40,11 +52,10 @@ angular.module('deckBuilder').
                             that.deckColors.push(that.cardColors[i].color);
                         }
                     }
-                    that.img = that.cardStats[0].imageUrl;
-                    $scope.form.img = that.img;
                     $scope.form.user = $scope.user;
                     $scope.form.cards = that.cards;
                     $scope.form.colors = that.deckColors;
+                    $scope.form.sideboard = that.sideboardnames;
                     $http.post('/deckbuilder', $scope.form)
                         .success(function (data) {
                             console.log(data);
@@ -58,11 +69,10 @@ angular.module('deckBuilder').
                             that.deckColors.push(that.cardColors[z].color);
                         }
                     }
-                    that.img = that.cardStats[0].imageUrl;
-                    $scope.form.img = that.img;
                     $scope.form.user = $scope.user;
                     $scope.form.cards = that.cards;
                     $scope.form.colors = that.deckColors;
+                    $scope.form.sideboard = that.sideboardnames;
                     console.log($scope.form);
                     $http.put('/deckbuilder/edit/' + id, $scope.form)
                         .success(function(data) {
@@ -76,60 +86,68 @@ angular.module('deckBuilder').
 
             // Adds cards for statistics and display purposes
             // @param card (String) - card name
-            this.addCard = function(card) {
-                if (!that.checkCard(card)) {
-                    // Get card from API
-                    mtgAPIservice.getCards(card).then(function (response) {
-                        var data = response.data.cards[response.data.cards.length - 1];
-                        var cardType = response.data.cards[response.data.cards.length - 1].types[0];
-                        that.cardCount++;
+            this.addCard = function(card, sideboard) {
+                if (!that.checkCard(card, sideboard)) {
+                    if (!sideboard) {
+                        // Get card from API
+                        mtgAPIservice.getCards(card).then(function (response) {
+                            var data = response.data.cards[response.data.cards.length - 1];
+                            var cardType = response.data.cards[response.data.cards.length - 1].types[0];
+                            that.cardCount++;
 
-                        // Obtain last card (most recent) from response and push into card collection
-                        that.cardStats.push(data);
-                        that.cards.push(data.name);
-                        // Keep track of cmc and push in appropriate array slot
-                        if (data.cmc) {
-                            for (var j = 0; j < 8; j++) {
-                                if (j == data.cmc) {
-                                    that.cmc[j]++;
+                            // Obtain last card (most recent) from response and push into card collection
+                            that.cardStats.push(data);
+                            that.cards.push(data.name);
+                            // Keep track of cmc and push in appropriate array slot
+                            if (data.cmc) {
+                                for (var j = 0; j < 8; j++) {
+                                    if (j == data.cmc) {
+                                        that.cmc[j]++;
+                                    }
+                                }
+                                if (data.cmc > 7) {
+                                    that.cmc[7]++;
                                 }
                             }
-                            if (data.cmc > 7) {
-                                that.cmc[7]++;
+                            // Record color for polar chart
+                            that.recordColor(data);
+                            // Record type for pie chart
+                            switch (cardType) {
+                                case "Creature":
+                                    that.cardTypes[0]++;
+                                    break;
+                                case "Sorcery":
+                                    that.cardTypes[1]++;
+                                    break;
+                                case "Instant":
+                                    that.cardTypes[2]++;
+                                    break;
+                                case "Artifact":
+                                    that.cardTypes[3]++;
+                                    break;
+                                case "Enchantment":
+                                    that.cardTypes[4]++;
+                                    break;
+                                case "Planeswalker":
+                                    that.cardTypes[5]++;
+                                    break;
+                                default:
+                                    // Lands
+                                    that.cardTypes[6]++;
+                                    break;
                             }
-                        }
-                        // Record color for polar chart
-                        that.recordColor(data);
-                        // Record type for pie chart
-                        switch (cardType) {
-                            case "Creature":
-                                that.cardTypes[0]++;
-                                break;
-                            case "Sorcery":
-                                that.cardTypes[1]++;
-                                break;
-                            case "Instant":
-                                that.cardTypes[2]++;
-                                break;
-                            case "Artifact":
-                                that.cardTypes[3]++;
-                                break;
-                            case "Enchantment":
-                                that.cardTypes[4]++;
-                                break;
-                            case "Planeswalker":
-                                that.cardTypes[5]++;
-                                break;
-                            default:
-                                // Lands
-                                that.cardTypes[6]++;
-                                break;
-                        }
-                        var deck = document.getElementById('deck');
-                        deck.classList.remove('hidden');
-                        // Update statistics graphs
-                        that.computeStats();
-                    });
+                            var deck = document.getElementById('deck');
+                            deck.classList.remove('hidden');
+                            // Update statistics graphs
+                            that.computeStats();
+                        });
+                    } else {
+                        // Get card from API
+                        mtgAPIservice.getCards(card).then(function (response) {
+                            var data = response.data.cards[response.data.cards.length - 1];
+                            that.sideboard.push(data);
+                        });
+                    }
                 }
             };
 
@@ -142,55 +160,68 @@ angular.module('deckBuilder').
             // Transfers card from sideboard to mainboard
             this.addMainboard = function(card, index){
                 that.sideboard.splice(index, 1);
-                that.addCard(card);
+                that.addCard(card, false);
             };
 
-            this.checkCard = function(card) {
-                // Have the card already, find it in the array and store a copy in the array
-                for (var a = 0; a < that.cardStats.length; a++) {
-                    if (that.cardStats[a].name.toUpperCase() == card.toUpperCase()) {
-                        var cardMatch = that.cardStats[a];
-                        that.cardStats.push(cardMatch);
-                        that.cardCount++;
-                        if (cardMatch.cmc) {
-                            for (var j = 0; j < 8; j++) {
-                                if (j == cardMatch.cmc) {
-                                    that.cmc[j]++;
+            this.checkCard = function(card, sideboard) {
+                if (sideboard) {
+                    for (var x = 0; x < that.sideboard.length; x++) {
+                        if (that.sideboard[x].name.toUpperCase() == card.toUpperCase()) {
+                            var match = that.sideboard[x];
+                            that.sideboard.push(match);
+                            // Sideboard has card, push a copy and return true.
+                            return true;
+                        }
+                    }
+                    // Card is not in sideboard.
+                    return false;
+                } else {
+                    // Have the card already, find it in the array and store a copy in the array
+                    for (var a = 0; a < that.cardStats.length; a++) {
+                        if (that.cardStats[a].name.toUpperCase() == card.toUpperCase()) {
+                            var cardMatch = that.cardStats[a];
+                            that.cardStats.push(cardMatch);
+                            that.cardCount++;
+                            if (cardMatch.cmc) {
+                                for (var j = 0; j < 8; j++) {
+                                    if (j == cardMatch.cmc) {
+                                        that.cmc[j]++;
+                                    }
+                                }
+                                if (cardMatch.cmc > 7) {
+                                    that.cmc[7]++;
                                 }
                             }
-                            if (cardMatch.cmc > 7) {
-                                that.cmc[7]++;
+                            // Record color for polar chart
+                            that.recordColor(cardMatch);
+                            // Record type for pie chart
+                            switch (cardMatch.types[0]) {
+                                case "Creature":
+                                    that.cardTypes[0]++;
+                                    break;
+                                case "Sorcery":
+                                    that.cardTypes[1]++;
+                                    break;
+                                case "Instant":
+                                    that.cardTypes[2]++;
+                                    break;
+                                case "Artifact":
+                                    that.cardTypes[3]++;
+                                    break;
+                                case "Enchantment":
+                                    that.cardTypes[4]++;
+                                    break;
+                                case "Planeswalker":
+                                    that.cardTypes[5]++;
+                                    break;
+                                default:
+                                    // Lands
+                                    that.cardTypes[6]++;
+                                    break;
                             }
+                            that.computeStats();
+                            return true;
                         }
-                        // Record color for polar chart
-                        that.recordColor(cardMatch);
-                        // Record type for pie chart
-                        switch (cardMatch.types[0]) {
-                            case "Creature":
-                                that.cardTypes[0]++;
-                                break;
-                            case "Sorcery":
-                                that.cardTypes[1]++;
-                                break;
-                            case "Instant":
-                                that.cardTypes[2]++;
-                                break;
-                            case "Artifact":
-                                that.cardTypes[3]++;
-                                break;
-                            case "Enchantment":
-                                that.cardTypes[4]++;
-                                break;
-                            case "Planeswalker":
-                                that.cardTypes[5]++;
-                                break;
-                            default:
-                                // Lands
-                                that.cardTypes[6]++;
-                                break;
-                        }
-                        that.computeStats();
-                        return true;
                     }
                 }
                 // Don't have the card, return false

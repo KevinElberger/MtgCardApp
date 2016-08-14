@@ -35,15 +35,15 @@
                     </span>
                 </div>
             </fieldset>
-        <form class="form deckbuilder" method="post">
+        <form name="deckform" class="form deckbuilder" method="post">
             <fieldset class="form-group">
                 <label>DECK NAME</label>
-                <input type="text" class="form-control" placeholder="Deck Name" ng-model="form.name"/>
+                <input type="text" class="form-control" placeholder="Deck Name" ng-model="form.name" ng-required="true"/>
             </fieldset>
 
             <fieldset class="form-group">
                 <label for="deckFormat">FORMAT</label>
-                <select id="deckFormat" class="form-control" ng-model="form.format">
+                <select id="deckFormat" class="form-control" ng-model="form.format" ng-required>
                     <option selected>Standard</option>
                     <option value="Legacy">Legacy</option>
                     <option value="Mtgo">MTGO</option>
@@ -59,18 +59,13 @@
                 </select>
             </fieldset>
 
-            <div class="{{$ctrl.hidden}}">
-                <br/>
-                <img ng-src="{{$ctrl.cardList[0].imageUrl}}" />
-            </div>
-
             <fieldset class="form-group">
                 <br/>
                 <label for="notes">DECK DESCRIPTION</label>
                 <textarea ng-model="form.description" class="form-control" id="notes" rows="8"></textarea>
                 <br/>
             </fieldset>
-            <button type="submit" id="saveDeck" class="btn btn-success" ng-click="createDeck()">Save Deck</button>
+            <button type="submit" id="saveDeck" class="btn btn-success" ng-click="deckform.$valid && createDeck()">Save Deck</button>
         </form>
     </div>
     <div class="col-md-6 deckContainerWrapper">
