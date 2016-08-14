@@ -31,7 +31,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control cName" ng-model="cardName" placeholder="Name" />
                     <span class="input-group-btn">
-                        <button ng-click="$ctrl.addCard(cardName, board)" id="addCard" class="btn btn-success">Add Card</button>
+                        <button ng-click="$ctrl.addCard(cardName)" id="addCard" class="btn btn-success">Add Card</button>
                     </span>
                 </div>
             </fieldset>
@@ -77,12 +77,14 @@
         <div class="deckContainer">
             <div id="deck" class="deck">
                 <img class="cardBody cardImg" ng-repeat="card in $ctrl.cardStats track by $index" ng-src="{{card.imageUrl}}"
-                     data-drag="true" ng-right-click="removeCard($index)" jqyoui-draggable/><br />
+                     ng-right-click="removeCard($index, false)" ng-click="addSideboard(card, $index)" /><br />
             </div>
         </div>
     </div>
-    <div class="col-md-2 sideboard" ng-drop="true">
+    <div class="col-md-2 sideboard">
             <h5 class="text-center">Sideboard</h5>
+        <img class="sideboardCardBody sideboardCardImg" ng-repeat="card in $ctrl.sideboard track by $index" ng-src="{{card.imageUrl}}"
+             ng-right-click="removeCard($index, true)" ng-click="addMainboard(card, $index)" /><br />
     </div>
     <div class="col-md-2">
         <div class="statisticsWrapper hidden" id="statisticsWrapper">
