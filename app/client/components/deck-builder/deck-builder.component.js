@@ -59,8 +59,8 @@ angular.module('deckBuilder').
                     $http.post('/deckbuilder', $scope.form)
                         .success(function (data) {
                             console.log(data);
-                            var url = "http://localhost:27017/#/profile";
-                            $window.location.href = url;
+                            $window.location.href = '/#/profile';
+                            $window.location.reload();
                         })
                         .error(function (data) {
                             console.log(data);
@@ -79,8 +79,8 @@ angular.module('deckBuilder').
                     $http.put('/deckbuilder/edit/' + id, $scope.form)
                         .success(function(data) {
                             console.log(data);
-                            var url = "http://localhost:27017/#/profile";
-                            $window.location.href = url;
+                            $window.location.href = '/#/profile';
+                            $window.location.reload();
                         })
                         .error(function(data) {
                             console.log(data);

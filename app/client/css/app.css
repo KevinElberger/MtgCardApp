@@ -166,7 +166,8 @@ header {
 }
 
 .searchImg {
-    zoom: 100%;
+    width: auto;
+    height: auto;
 }
 
 .placeholder {
@@ -213,11 +214,6 @@ header {
     text-align: center;
 }
 
-img {
-    width: 140px;
-    height: auto;
-}
-
 .deck {
     min-height: 10em;
     height: 850px;
@@ -256,6 +252,8 @@ img {
 }
 
 .cardBody {
+    width: 140px;
+    height: auto;
     position: relative;
     padding-bottom: 1em;
     padding-top: 1em;
@@ -264,6 +262,8 @@ img {
 }
 
 .sideboardCardBody {
+    width: 140px;
+    height: auto;
     position: relative;
     margin-left: -100px;
     padding-bottom: 1em;
@@ -291,6 +291,11 @@ img {
     zoom: 100%;
     display: block;
     margin: 0 auto;
+}
+
+.imgMax {
+    width: auto;
+    height: auto;
 }
 
 .colorIcons {
