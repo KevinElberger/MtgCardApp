@@ -7,7 +7,7 @@
   "license": "MIT",
   "engines": {
       "node": "4.4.5"
-  },
+    },
   "devDependencies": {
     "bower": "^1.7.7",
     "http-server": "^0.9.0",
@@ -22,6 +22,7 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
+    "start": "node server.js",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run"
