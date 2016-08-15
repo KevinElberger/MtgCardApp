@@ -1,4 +1,17 @@
 <header class="page-header">
+    <div>
+        <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+            <a class="navmenu-brand" href="#/">MTG Card App</a>
+            <ul class="nav navmenu-nav">
+                <li><a href="#/login">Sign In</a></li>
+            </ul>
+        </nav>
+        <div class="burgerWrapper landingburger">
+            <button type="button" class="hamburger" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+                &#9776
+            </button>
+        </div>
+    </div>
     <div class="header-content">
         <h1 class="mainTitle title text-center">Card Constructor</h1>
         <p class="small">An application for building Magic: The Gathering decks</p>
@@ -17,9 +30,6 @@
             <h4 class="titleText text-center">View Statistics</h4>
             <p class="text-center">Build your own deck and view the generated statistics of your deck, such as Mana Curve, Type Breakdown and Color Breakdown.</p>
             <img class="fullImg imgBorder" src="./img/horizontalstats.png" /><br/>
-        </div>
-        <div class="row row3">
-            <p>hi mom</p>
         </div>
         <div class="row row4">
             <footer>

@@ -78,7 +78,7 @@
         </div>
     </div>
     <div class="col-md-2 sideboard">
-            <h5 class="text-center">Sideboard</h5>
+            <h5 class="text-center sideboard-text">Sideboard</h5>
         <img class="sideboardCardBody" ng-repeat="card in $ctrl.sideboard track by $index" ng-src="{{card.imageUrl}}"
              ng-right-click="removeCard($index, true)" ng-click="addMainboard(card.name, $index)" /><br />
     </div>

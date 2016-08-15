@@ -214,7 +214,8 @@ header {
 }
 
 img {
-    zoom: 60%;
+    width: 140px;
+    height: auto;
 }
 
 .deck {
@@ -232,10 +233,9 @@ img {
 .sideboard {
     height: 850px;
     margin: 0 auto;
-    padding: 0;
-    background-color: #fef1ec;
+    padding-left: 5%;
+    background-color: #e1e3e4;
     border-radius: 0;
-
 }
 
 .deckContainer {
@@ -259,17 +259,13 @@ img {
     position: relative;
     padding-bottom: 1em;
     padding-top: 1em;
-    margin-left: -150px;
+    margin-left: -100px;
     margin-bottom: 2em;
-}
-
-.sideboard {
-    padding-left: 5%;
 }
 
 .sideboardCardBody {
     position: relative;
-    margin-left: -150px;
+    margin-left: -100px;
     padding-bottom: 1em;
 }
 
@@ -399,6 +395,7 @@ img {
 }
 
 .mainTitle, .small {
+    padding-top: 5px;
     color: #f5f7f9;
 }
 
@@ -433,13 +430,13 @@ img {
 
 }
 
+.landingburger {
+    color: #fff;
+}
+
 .row2 {
     background: #303b43;
     color: #f5f7f9;
-}
-
-.row3 {
-
 }
 
 .row4 {
