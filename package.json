@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "A MTG Deck building web application",
   "repository": "https://github.com/KevinElberger/mtgcardapp.git",
+  "directory": "app/bower_components",
   "license": "MIT",
   "engines": {
       "node": "4.4.5"
