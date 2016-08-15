@@ -11,8 +11,8 @@ var passport = require('passport');
 var localStrategy = require('passport-local' ).Strategy;
 
 // mongoose
-var mongoUri = 'mongodb://dbuser:dbpass@host:port/dbname';
-mongoose.connect(mongoUri);
+
+mongoose.connect(process.env.MONGOLAB_URI);
 
 // user schema/model
 var User = require('./models/user.js');
