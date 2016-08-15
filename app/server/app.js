@@ -24,6 +24,7 @@ var routes = require('./routes/api.js');
 
 // define middleware
 app.use(express.static(path.join(__dirname, '../client')));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,7 +36,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // configure passport
 passport.use(new localStrategy(User.authenticate()));
