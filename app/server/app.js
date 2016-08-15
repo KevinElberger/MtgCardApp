@@ -11,7 +11,8 @@ var passport = require('passport');
 var localStrategy = require('passport-local' ).Strategy;
 
 // mongoose
-mongoose.connect('mongodb://localhost:27017/mean-auth-master(1)');
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/mean-auth-master(1)';
+mongoose.connect(mongoUri);
 
 // user schema/model
 var User = require('./models/user.js');
