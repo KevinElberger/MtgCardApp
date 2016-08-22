@@ -25,6 +25,12 @@ header {
     padding-top: 5px;
 }
 
+@media only screen and (max-width : 768px) {
+    .mainTitle {
+        font-size: 3em;
+    }
+}
+
 #buttonArea {
     padding-left: 0;
 }
@@ -60,6 +66,7 @@ header {
 }
 
 .results {
+    margin-top: 1em;
     text-align: left;
 }
 
@@ -99,7 +106,7 @@ header {
     padding: 0px 15px 0px 15px;
     top: 0;
     border: 0;
-    font-size: 1.4em;
+    font-size: 2em;
     font-weight: bold;
     cursor: pointer;
 }
@@ -195,7 +202,7 @@ header {
     color: #ffffff;
 }
 
-.selected, .selected:hover, .selected:active {
+.selected, .selected:hover, .selected:active, .selected:focus {
     background: #4cbe83;
     border-color: #3da971;
     color: #ffffff;
@@ -404,6 +411,10 @@ header {
     color: #f5f7f9;
 }
 
+.small {
+    font-size: 1em;
+}
+
 .small-text {
     font-size: 10px;
 }
@@ -537,16 +548,18 @@ a.social-icon:hover {
 
 a.github {
     color: rgb(51, 51, 51) !important;
+    margin-right: 1em;
 }
 a.github:hover {
     background-color: rgb(51, 51, 51) !important;
 }
 
-a.facebook {
-    color: rgb(59, 90, 154) !important;
+a.envelope {
+    margin-left: 1em;
 }
-a.facebook:hover {
-    background-color: rgb(59, 90, 154) !important;
+
+a.envelope:hover {
+    background-color: rgb(217,74,56);
 }
 
 /* Edit buttons */

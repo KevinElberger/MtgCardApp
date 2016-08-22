@@ -10,6 +10,7 @@ angular.module('cardSearch').
 
             this.search = function(name) {
                 $('.results').empty();
+                $('.loader').append("<i class='fa fa-cog fa-spin fa-3x fa-fw'></i><span class='sr-only'>Loading...</span>");
                 mtgAPIservice.getCards(name).then(function(response) {
                     // Obtain relevant data from response
                     that.cardList = response.data.cards;
@@ -21,6 +22,7 @@ angular.module('cardSearch').
                             that.price[1] = response.data.card.tcg_low;
                             that.price[2] = response.data.card.tcg_mid;
 
+                            $('.loader').empty();
                             that.showContent(0);
                             // Append line chart with item prices
                             $('.canvasWrapper').empty().append('<label>Price</label><canvas id="line" width="450" height="450"></canvas>');
@@ -85,12 +87,16 @@ angular.module('cardSearch').
                 // Change selected button color on click
                 $('.setbtn').click(function() {
                     $('.setbtn.selected').removeClass('selected');
-                   $(this).addClass('selected');
+                    $(this).addClass('selected');
                 });
                 for (var i = 0; i < that.cardList.length; i++) {
                     if (that.cardList[i].set == set) {
                         // Replace card image
-                        $('#imgResult').empty().append("<img id='searchImg' class='searchImg' src="+ that.cardList[i].imageUrl +" />");
+                        if (that.cardList[i].imageUrl) {
+                            $('#imgResult').empty().append("<img id='searchImg' class='searchImg' src="+ that.cardList[i].imageUrl +" />");
+                        } else {
+                            $('#imgResult').empty().append("<i class='fa fa-frown-o fa-3x' aria-hidden='true'></i><p>No image available.</p>")
+                        }
                         $('.results').empty();
                         that.showContent(i);
                     }

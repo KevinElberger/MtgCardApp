@@ -302,17 +302,6 @@ angular.module('deckBuilder').
                 }
             };
 
-            // Saves deck as local text file
-            this.saveDeck = function(deckFormat, mainBoard, sideBoard, notes) {
-                var format = "Deck Format: " + deckFormat + "\r\n";
-                var main = "Mainboard:\r\n" + mainBoard + "\r\n";
-                var side = "Sideboard:\r\n" + sideBoard + "\r\n";
-                var deckNotes = "Notes about deck:\r\n " + notes;
-                var deck = new Blob([format, main, side, deckNotes], {type: "text/plain;charset=utf-8"});
-                saveAs(deck, "deck.txt");
-                this.textDeck = deck;
-            };
-
             this.computeStats = function() {
                 var statWrap = document.getElementById("statisticsWrapper");
                 statWrap.classList.remove("hidden");

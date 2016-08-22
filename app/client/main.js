@@ -59,11 +59,7 @@ myApp.run(function ($rootScope, $location, $route, AuthService) {
 });
 
 myApp.directive('background', function() {
-  setInterval(function() {
-    $(".login-header").fadeTo('slow', 0.5, function() {
-      var curId = Math.round(Math.random() * 9) + 1;
-      $(".login-header").css("background-image", "url(../img/bg" + curId + ".jpg)");
-    }).fadeTo('fast','1');
-  }, 12000);
+  var curId = Math.round(Math.random() * 9) + 1;
+  $(".login-header").css("background-image", "url(../img/bg" + curId + ".jpg)");
   return {};
 });
