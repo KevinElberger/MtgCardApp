@@ -268,6 +268,20 @@ header {
     margin-bottom: 2em;
 }
 
+.col-lg-8 {
+    width: 66.66666667%;
+}
+
+@media (max-width: 500px) {
+    .title {
+        margin-top: 0.5em;
+    }
+
+    .priceStats {
+        width: 100%;
+    }
+}
+
 .sideboardCardBody {
     width: 140px;
     height: auto;
