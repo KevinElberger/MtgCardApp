@@ -8,6 +8,8 @@ angular.module('cardSearch').
             this.price = [0,0,0]; // high, low, mid
             var that = this;
 
+            // Search for a Magic: The Gathering card
+            // @param name (String) - card name
             this.search = function(name) {
                 $('.results').empty();
                 $('.loader').append("<i class='fa fa-cog fa-spin fa-3x fa-fw'></i><span class='sr-only'>Loading...</span>");
@@ -38,6 +40,8 @@ angular.module('cardSearch').
                 });
             };
 
+            // Display the content of the Magic: The Gathering card
+            // @param num (number) - card set number
             this.showContent = function(num) {
                 // Append card stats to results div
                 if (that.cardList[num].power !== undefined && that.cardList[num].toughness !== undefined) {
@@ -57,10 +61,14 @@ angular.module('cardSearch').
                 }
             };
 
+            // Display hidden content
+            // @param elem (Object) - element to be displayed
             this.remove = function(elem) {
                 elem.classList.remove('hidden');
             };
 
+            // Create a chart to be displayed
+            // @param chart (Object) - chart element
             this.createChart = function(chart) {
                 var lineChart = new Chart(chart, {
                     type: 'line',
@@ -83,6 +91,8 @@ angular.module('cardSearch').
                 });
             };
 
+            // Update a card's set information
+            // @param set (number) - card set number
             this.update = function(set) {
                 // Change selected button color on click
                 $('.setbtn').click(function() {

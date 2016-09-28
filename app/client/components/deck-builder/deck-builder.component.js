@@ -5,21 +5,22 @@ angular.module('deckBuilder').
             this.hidden = 'hidden'; // Hide image until search is made
             this.cardStats = []; // Collection of cards for mainboard
             this.sideboard = []; // Collection of cards for sideboard
-            this.sideboardnames = [];
+            this.sideboardnames = []; // Names of cards in sideboard
             this.cardTypes = [0,0,0,0,0,0,0]; // Creature, sorcery, instant, artifact, enchantment, planeswalker, land
-            this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0}, {color: "Blue", count: 0}, {color: "Red", count: 0}, {color: "Green", count: 0}];
-            this.cardCount = 0;
+            this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0}, {color: "Blue", count: 0},
+                               {color: "Red", count: 0}, {color: "Green", count: 0}];
+            this.cardCount = 0; // Total number of cards in deck
             this.cmc = [0,0,0,0,0,0,0,0];
             this.img = "";
-            $scope.form = {};
+            $scope.form = {}; // Object used to pass all relevant information to Deck model
             this.cards = []; // Name of cards in deck
             this.deckColors = [];
-            $scope.user = JSON.parse(sessionStorage.user);
+            $scope.user = JSON.parse(sessionStorage.user); // User ID to pull deck information if in edit mode
             var that = this;
-            var paramValue = $route.current.$$route.edit;
-            var id = $routeParams.id;
+            var paramValue = $route.current.$$route.edit; // Parameter value to check if in edit mode
+            var id = $routeParams.id; // Deck ID number
 
-            // Check if in edit mode, if so, make request for deck ID
+            // Check if in edit mode, if so, make GET request for deck ID
             if (paramValue !== undefined) {
                 $http.get('/deckbuilder/edit/' + id)
                     .success(function(data) {
@@ -35,13 +36,16 @@ angular.module('deckBuilder').
                     })
             }
 
-            // Take only names for sideboard for Deck model
+            // Push all sideboard card names into array for
+            // the Deck model
             $scope.generateSideboardNames = function() {
                 for (var a = 0; a < that.sideboard.length; a++) {
                     that.sideboardnames.push(that.sideboard[a].name);
                 }
             };
 
+            // Create a new deck if not in edit mode,
+            // otherwise updates an existing deck
             $scope.createDeck = function() {
                 $scope.generateSideboardNames();
                 // If this is a brand-new deck
@@ -52,10 +56,12 @@ angular.module('deckBuilder').
                             that.deckColors.push(that.cardColors[i].color);
                         }
                     }
+                    // All relevant information for Deck model
                     $scope.form.user = $scope.user;
                     $scope.form.cards = that.cards;
                     $scope.form.colors = that.deckColors;
                     $scope.form.sideboard = that.sideboardnames;
+                    // Create deck via POST request and redirect user
                     $http.post('/deckbuilder', $scope.form)
                         .success(function (data) {
                             console.log(data);
@@ -66,6 +72,7 @@ angular.module('deckBuilder').
                             console.log(data);
                         });
                 } else {
+                    // Edit an existing deck
                     for (var z = 0; z < that.cardColors.length; z++) {
                         if (that.cardColors[z].count > 0) {
                             that.deckColors.push(that.cardColors[z].color);
@@ -75,7 +82,7 @@ angular.module('deckBuilder').
                     $scope.form.cards = that.cards;
                     $scope.form.colors = that.deckColors;
                     $scope.form.sideboard = that.sideboardnames;
-                    console.log($scope.form);
+                    // Use PUT request to edit the deck
                     $http.put('/deckbuilder/edit/' + id, $scope.form)
                         .success(function(data) {
                             console.log(data);
@@ -90,6 +97,7 @@ angular.module('deckBuilder').
 
             // Adds cards for statistics and display purposes
             // @param card (String) - card name
+            // @param sideboard (Array) - card objects in sideboard array
             this.addCard = function(card, sideboard) {
                 if (!that.checkCard(card, sideboard)) {
                     if (!sideboard) {
@@ -156,28 +164,36 @@ angular.module('deckBuilder').
             };
 
             // Transfers card from mainboard to sideboard
+            // @param card (Object) - card to be transferred
+            // @param index (number) - index number of card in mainboard array
             $scope.addSideboard = function(card, index) {
                 that.sideboard.push(card);
                 $scope.removeCard(index);
             };
 
             // Transfers card from sideboard to mainboard
+            // @param card (Object) - card to be transferred
+            // @param index (number) - index number of card in sideboard array
             $scope.addMainboard = function(card, index){
                 that.sideboard.splice(index, 1);
                 that.addCard(card, false);
             };
 
+            // Check if the card is cached in the deck to
+            // reduce the number of API requests
+            // @param card (Object) - card object to be searched for
+            // @param sideboard (Array) - sideboard array of cards
             this.checkCard = function(card, sideboard) {
                 if (sideboard) {
                     for (var x = 0; x < that.sideboard.length; x++) {
                         if (that.sideboard[x].name.toUpperCase() == card.toUpperCase()) {
+                            // Sideboard has card, push a copy and return true
                             var match = that.sideboard[x];
                             that.sideboard.push(match);
-                            // Sideboard has card, push a copy and return true.
                             return true;
                         }
                     }
-                    // Card is not in sideboard.
+                    // Card is not in sideboard
                     return false;
                 } else {
                     // Have the card already, find it in the array and store a copy in the array
@@ -228,11 +244,13 @@ angular.module('deckBuilder').
                         }
                     }
                 }
-                // Don't have the card, return false
+                // Don't have the card
                 return false;
             };
 
             // Removes a card from the deck & re-computes statistics
+            // @param index (number) - index in array for the card
+            // @param sideboard (Array) - sideboard array of cards
             $scope.removeCard = function(index, sideboard) {
                 if (sideboard) {
                     that.sideboard.splice(index,1);
@@ -289,6 +307,8 @@ angular.module('deckBuilder').
                 }
             };
 
+            // Records colors of a given card
+            // @param card (Object) - card object to record colors
             this.recordColor = function(card) {
                 if (card.colors) {
                     for (var i = 0; i < that.cardColors.length; i++) {
@@ -302,6 +322,7 @@ angular.module('deckBuilder').
                 }
             };
 
+            // Adds charts to append to statisticsWrapper
             this.computeStats = function() {
                 var statWrap = document.getElementById("statisticsWrapper");
                 statWrap.classList.remove("hidden");
@@ -318,6 +339,8 @@ angular.module('deckBuilder').
                 that.createChart(doughnut);
             };
 
+            // Implements all the chart data for statistics
+            // @param chart (element) - DOM element to create chart
             this.createChart = function(chart) {
                 if (chart.canvas.id == "polar") {
                     var doughnutChart = new Chart(chart, {
