@@ -4,14 +4,14 @@ A web application for building Magic The Gathering decks and looking up pricing 
 
 ## Installation
 
-###Pre-Requisites
+### Pre-Requisites
 
 Before running a local copy, you will need to install:
-*[NodeJS](https://www.nodejs.org)
-*[MongoDB](https://www.mongodb.com)
-*[MongooseJS](https://www.mongoosejs.com)
+* [NodeJS](https://www.nodejs.org)
+* [MongoDB](https://www.mongodb.com)
+* [MongooseJS](https://www.mongoosejs.com)
 
-
+### Running a local copy
 To run a local version, first clone the repository:
 `git clone http://github.com/KevinElberger/MTGCardApp.git`
 
@@ -29,7 +29,7 @@ To run a local server at `localhost:27017`
 ## Troubleshooting
 
 If you cannot login or register a user, you must check to see if
-you have a running instance of MongoDB open. 
+you have a running instance of MongoDB open.
 
 ## Technologies Used
 
