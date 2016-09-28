@@ -272,12 +272,13 @@ header {
     width: 66.66666667%;
 }
 
-@media (min-width: 300px) {
+@media (max-width: 500px) {
     .title {
         margin-top: 0.5em;
     }
+
     .priceStats {
-        width: 90%;
+        width: 100%;
     }
 }
 
