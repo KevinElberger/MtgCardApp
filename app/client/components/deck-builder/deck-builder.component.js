@@ -7,15 +7,15 @@ angular.module('deckBuilder').
             this.sideboard = []; // Collection of cards for sideboard
             this.sideboardnames = []; // Names of cards in sideboard
             this.cardTypes = [0,0,0,0,0,0,0]; // Creature, sorcery, instant, artifact, enchantment, planeswalker, land
-            this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0}, {color: "Blue", count: 0},
-                               {color: "Red", count: 0}, {color: "Green", count: 0}];
+            this.cardColors = [{color: "White", count: 0}, {color: "Black", count: 0},
+                               {color: "Blue", count: 0}, {color: "Red", count: 0},
+                               {color: "Green", count: 0}]; // Colors and amount of colors in deck
             this.cardCount = 0; // Total number of cards in deck
-            this.cmc = [0,0,0,0,0,0,0,0];
-            this.img = "";
-            $scope.form = {}; // Object used to pass all relevant information to Deck model
+            this.cmc = [0,0,0,0,0,0,0,0]; // Card mana cost values (0 - 7+)
+            this.form = {}; // Object used to pass all relevant information to Deck model
             this.cards = []; // Name of cards in deck
-            this.deckColors = [];
-            $scope.user = JSON.parse(sessionStorage.user); // User ID to pull deck information if in edit mode
+            this.deckColors = []; // Total types of colors in the deck
+            this.user = JSON.parse(sessionStorage.user); // User ID to pull deck information if in edit mode
             var that = this;
             var paramValue = $route.current.$$route.edit; // Parameter value to check if in edit mode
             var id = $routeParams.id; // Deck ID number
@@ -33,12 +33,12 @@ angular.module('deckBuilder').
                     })
                     .error(function(data) {
                         console.log(data);
-                    })
+                    });
             }
 
-            // Push all sideboard card names into array for
-            // the Deck model
-            $scope.generateSideboardNames = function() {
+            // Push all sideboard card names
+            // into array for Deck model
+            this.generateSideboardNames = function() {
                 for (var a = 0; a < that.sideboard.length; a++) {
                     that.sideboardnames.push(that.sideboard[a].name);
                 }
@@ -46,8 +46,8 @@ angular.module('deckBuilder').
 
             // Create a new deck if not in edit mode,
             // otherwise updates an existing deck
-            $scope.createDeck = function() {
-                $scope.generateSideboardNames();
+            this.createDeck = function() {
+                that.generateSideboardNames();
                 // If this is a brand-new deck
                 if (paramValue == undefined) {
                     // Record deck colors for deck model
@@ -56,15 +56,10 @@ angular.module('deckBuilder').
                             that.deckColors.push(that.cardColors[i].color);
                         }
                     }
-                    // All relevant information for Deck model
-                    $scope.form.user = $scope.user;
-                    $scope.form.cards = that.cards;
-                    $scope.form.colors = that.deckColors;
-                    $scope.form.sideboard = that.sideboardnames;
+                    that.addDeckData();
                     // Create deck via POST request and redirect user
-                    $http.post('/deckbuilder', $scope.form)
+                    $http.post('/deckbuilder', that.form)
                         .success(function (data) {
-                            console.log(data);
                             $window.location.href = '/#/profile';
                             $window.location.reload();
                         })
@@ -78,21 +73,26 @@ angular.module('deckBuilder').
                             that.deckColors.push(that.cardColors[z].color);
                         }
                     }
-                    $scope.form.user = $scope.user;
-                    $scope.form.cards = that.cards;
-                    $scope.form.colors = that.deckColors;
-                    $scope.form.sideboard = that.sideboardnames;
+                    that.addDeckData();
                     // Use PUT request to edit the deck
-                    $http.put('/deckbuilder/edit/' + id, $scope.form)
+                    $http.put('/deckbuilder/edit/' + id, that.form)
                         .success(function(data) {
-                            console.log(data);
                             $window.location.href = '/#/profile';
                             $window.location.reload();
                         })
                         .error(function(data) {
                             console.log(data);
-                        })
+                        });
                 }
+            };
+
+            // Adds all relevant information
+            // for the Deck model
+            this.addDeckData = function() {
+                that.form.user = that.user;
+                that.form.cards = that.cards;
+                that.form.colors = that.deckColors;
+                that.form.sideboard = that.sideboardnames;
             };
 
             // Adds cards for statistics and display purposes
@@ -166,15 +166,15 @@ angular.module('deckBuilder').
             // Transfers card from mainboard to sideboard
             // @param card (Object) - card to be transferred
             // @param index (number) - index number of card in mainboard array
-            $scope.addSideboard = function(card, index) {
+            this.addSideboard = function(card, index) {
                 that.sideboard.push(card);
-                $scope.removeCard(index);
+                that.removeCard(index);
             };
 
             // Transfers card from sideboard to mainboard
             // @param card (Object) - card to be transferred
             // @param index (number) - index number of card in sideboard array
-            $scope.addMainboard = function(card, index){
+            this.addMainboard = function(card, index){
                 that.sideboard.splice(index, 1);
                 that.addCard(card, false);
             };
@@ -251,7 +251,7 @@ angular.module('deckBuilder').
             // Removes a card from the deck & re-computes statistics
             // @param index (number) - index in array for the card
             // @param sideboard (Array) - sideboard array of cards
-            $scope.removeCard = function(index, sideboard) {
+            this.removeCard = function(index, sideboard) {
                 if (sideboard) {
                     that.sideboard.splice(index,1);
                 } else {
