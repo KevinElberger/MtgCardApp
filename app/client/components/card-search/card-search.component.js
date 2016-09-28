@@ -27,7 +27,7 @@ angular.module('cardSearch').
                             $('.loader').empty();
                             that.showContent(0);
                             // Append line chart with item prices
-                            $('.canvasWrapper').empty().append('<label>Price</label><canvas id="line" width="450" height="450"></canvas>');
+                            $('.canvasWrapper').empty().append('<label>Price</label><canvas id="line" width="100%" height="100%"></canvas>');
                             var ctx = document.getElementById('line').getContext('2d');
                             that.createChart(ctx);
                             // Display card image & set display
